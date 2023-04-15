@@ -1,9 +1,10 @@
+const daisyui = require('daisyui');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
-    './src/app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -12,7 +13,18 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        'primary': '#6379F4',
+        'secondary': '#E5E5E5',
+        'font-primary': '#3A3D42',
+        'font-primary-blur': '#3A3D4299',
+        'font-secondary': '#ffffff',
+        'font-placeholder': '#A9A9A9CC',
+      },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["cmyk"],
+  },
 }
