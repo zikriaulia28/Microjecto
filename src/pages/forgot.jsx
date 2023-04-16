@@ -23,7 +23,7 @@ function Login() {
     <>
       <main>
         <Head>
-          <title>Fazzpay - Login</title>
+          <title>Fazzpay - Forgot</title>
         </Head>
         <section className="flex">
           <div className="relative lg:flex-[2]">
@@ -56,13 +56,13 @@ function Login() {
           </div>
           <div className="lg:flex-1 pl-12 pr-36 py-28 ">
             <h1 className="text-font-primary text-2xl font-bold">
-              Start Accessing Banking Needs With All Devices and All Platforms
-              With 30.000+ Users
+              Did You Forgot Your Password? Don’t Worry, You Can Reset Your
+              Password In a Minutes.
             </h1>
             <p className="text-font-primary-blur mt-7">
-              Transfering money is eassier than ever, you can access FazzPay
-              wherever you are. Desktop, laptop, mobile phone? we cover all of
-              that for you!
+              To reset your password, you must type your e-mail and we will send
+              a link to your email and you will be directed to the reset
+              password screens.
             </p>
             <form className="mt-16">
               <div>
@@ -77,39 +77,9 @@ function Login() {
                   />
                 </span>
               </div>
-              <div className="mt-16">
-                <span className="relative">
-                  <span className="absolute bottom-0">
-                    <Image src={lock} alt="email" />
-                  </span>
-                  <span className="absolute bottom-0 right-4 w-4 h-4">
-                    <Image
-                      src={showPassword ? show : hide}
-                      alt="hide"
-                      className="w-full h-full object-cover"
-                      onClick={togglePassword}
-                    />
-                  </span>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    className="placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none"
-                    onChange={handlePasswordChange}
-                  />
-                </span>
-              </div>
-              <Link href="/forgot">
-                <p className="text-end mt-5 cursor-pointer">Forgot password?</p>
-              </Link>
               <div className="mt-20 text-center py-4 rounded-lg cursor-pointer disabled bg-secondary w-full border-none">
-                Login
+                Confirm
               </div>
-              <p className="text-center mt-10">
-                Don’t have an account? Let’s{" "}
-                <Link href="/signup">
-                  <span className="cursor-pointer text-primary">Sign Up</span>
-                </Link>
-              </p>
             </form>
           </div>
         </section>

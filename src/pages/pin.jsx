@@ -20,6 +20,7 @@ function Pin() {
       }
     }
   };
+
   return (
     <>
       <main>
@@ -69,42 +70,42 @@ function Pin() {
               <div className="flex gap-5">
                 <input
                   ref={input1Ref}
-                  type="password"
+                  type="text"
                   className="border w-12 h-14 rounded-lg outline-none text-center"
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input2Ref)}
                 />
                 <input
                   ref={input2Ref}
-                  type="password"
+                  type="text"
                   className="border w-12 h-14 rounded-lg outline-none text-center"
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input3Ref)}
                 />
                 <input
                   ref={input3Ref}
-                  type="password"
+                  type="text"
                   className="border w-12 h-14 rounded-lg outline-none text-center"
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input4Ref)}
                 />
                 <input
                   ref={input4Ref}
-                  type="password"
+                  type="text"
                   className="border w-12 h-14 rounded-lg outline-none text-center"
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input5Ref)}
                 />
                 <input
                   ref={input5Ref}
-                  type="password"
+                  type="text"
                   className="border w-12 h-14 rounded-lg outline-none text-center"
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input6Ref)}
                 />
                 <input
                   ref={input6Ref}
-                  type="password"
+                  type="text"
                   className="border w-12 h-14 rounded-lg outline-none text-center"
                   maxLength={1}
                 />
