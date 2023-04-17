@@ -22,6 +22,8 @@ module.exports = {
         'font-secondary': '#ffffff',
         'font-secondary-blur': '#DFDCDC',
         'font-placeholder': '#A9A9A9CC',
+        'font-error': '#FF5B37',
+
       },
       fontFamily: {
         nunitosans: ["Nunito Sans"],
@@ -30,6 +32,6 @@ module.exports = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["cmyk"],
+    themes: ["emerald"],
   },
 }

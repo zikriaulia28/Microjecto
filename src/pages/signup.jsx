@@ -6,19 +6,67 @@ import lock from "../assets/auth/lock.svg";
 import phone from "../assets/auth/phones.png";
 import show from "../assets/auth/show.svg";
 import hide from "../assets/auth/hide.svg";
-import person from "../assets/auth/person.svg";
-import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import { register } from "@/utils/https/auth";
+import { useMemo, useState } from "react";
 
 function Signup() {
+  const controller = useMemo(() => new AbortController(), []);
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState("");
+  const [isLoading, setLoading] = useState(false);
+  const [isInvalid, setInvalid] = useState(false);
+  const [msgFetch, setMsgFetch] = useState("");
+  const [input, setInput] = useState(false);
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const onChangeForm = (e) => {
+    const { name, value } = e.target;
+    if (value) {
+      setInput(true);
+    } else {
+      setInput(false);
+    }
+    if (name === "email") setInvalid(false);
+    setForm((form) => {
+      return { ...form, [name]: value };
+    });
+  };
+
+  const handleSignup = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    // console.log(form);
+    try {
+      const result = await register(form, controller);
+      // console.log(result);
+      if (result.status === 200) {
+        setLoading(false);
+        console.log("SUKSES");
+        router.push("/login");
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 400) {
+        // console.log(error.response.data.msg);
+        setMsgFetch(error.response.data.msg);
+        setInvalid(true);
+        setLoading(false);
+      }
+    }
+  };
+
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handleNavigate = (to) => {
+    router.push(to);
   };
   return (
     <>
@@ -72,45 +120,70 @@ function Signup() {
             <form className="mt-16">
               <div>
                 <span className="relative">
-                  <span className="absolute bottom-0">
-                    <Image src={person} alt="person" />
-                  </span>
+                  <i
+                    className={`bi bi-person text-2xl absolute -top-2 ${
+                      input ? "text-primary" : "text-font-placeholder"
+                    }`}
+                  ></i>
                   <input
                     type="text"
                     placeholder="Enter your firstname"
-                    className="placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none"
+                    className={`placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none ${
+                      input ? "border-b-primary" : "border-b-font-placeholder"
+                    }`}
+                    name="firstName"
+                    id="firstName"
+                    value={form.firstName}
+                    onChange={onChangeForm}
                   />
                 </span>
               </div>
               <div className="mt-8">
                 <span className="relative">
-                  <span className="absolute bottom-0">
-                    <Image src={person} alt="person" />
-                  </span>
+                  <i
+                    className={`bi bi-person text-2xl absolute -top-2 ${
+                      input ? "text-primary" : "text-font-placeholder"
+                    }`}
+                  ></i>
                   <input
                     type="text"
                     placeholder="Enter your lastname"
-                    className="placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none"
+                    className={`placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none ${
+                      input ? "border-b-primary" : "border-b-font-placeholder"
+                    }`}
+                    name="lastName"
+                    id="lastName"
+                    value={form.lastName}
+                    onChange={onChangeForm}
                   />
                 </span>
               </div>
               <div className="mt-8">
                 <span className="relative">
-                  <span className="absolute bottom-0">
-                    <Image src={email} alt="email" />
-                  </span>
+                  <i
+                    className={`bi bi-envelope-fill text-2xl absolute -top-2 ${
+                      input ? "text-primary" : "text-font-placeholder"
+                    }`}
+                  ></i>
                   <input
                     type="email"
                     placeholder="Enter your e-mail"
-                    className="placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none"
+                    className={`placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none ${
+                      input ? "border-b-primary" : "border-b-font-placeholder"
+                    }`}
+                    name="email"
+                    value={form.email}
+                    onChange={onChangeForm}
                   />
                 </span>
               </div>
               <div className="mt-8">
                 <span className="relative">
-                  <span className="absolute bottom-0">
-                    <Image src={lock} alt="email" />
-                  </span>
+                  <i
+                    className={`bi bi-lock-fill text-2xl absolute -top-2 ${
+                      input ? "text-primary" : "text-font-placeholder"
+                    }`}
+                  ></i>
                   <span className="absolute bottom-0 right-4 w-4 h-4">
                     <Image
                       src={showPassword ? show : hide}
@@ -122,19 +195,46 @@ function Signup() {
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Create your password"
-                    className="placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none"
-                    onChange={handlePasswordChange}
+                    className={`placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none ${
+                      input ? "border-b-primary" : "border-b-font-placeholder"
+                    }`}
+                    name="password"
+                    value={form.password}
+                    onChange={onChangeForm}
                   />
                 </span>
               </div>
-              <div className="mt-20 text-center py-4 rounded-lg cursor-pointer disabled bg-secondary w-full border-none">
-                Sign Up
-              </div>
+              <p className="w-full text-center my-5 text-font-error font-semibold">
+                {isInvalid && msgFetch}
+              </p>
+              {isLoading ? (
+                <progress className="progress progress-secondary w-full"></progress>
+              ) : (
+                <button
+                  onClick={handleSignup}
+                  disabled={
+                    isInvalid ||
+                    isLoading ||
+                    form.email === "" ||
+                    form.password === "" ||
+                    form.firstName === "" ||
+                    form.lastName === ""
+                  }
+                  className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
+                    input ? "bg-primary text-white" : "bg-secondary"
+                  }`}
+                >
+                  Sign Up
+                </button>
+              )}
               <p className="text-center mt-10">
                 Don’t have an account? Let’s{" "}
-                <Link href="/login">
-                  <span className="cursor-pointer text-primary">Login</span>
-                </Link>
+                <span
+                  className="cursor-pointer text-primary"
+                  onClick={() => handleNavigate("/login")}
+                >
+                  Login
+                </span>
               </p>
             </form>
           </div>

@@ -1,24 +1,76 @@
 import Head from "next/head";
 import Image from "next/image";
 import bg from "../assets/auth/background.png";
-import email from "../assets/auth/email.svg";
-import lock from "../assets/auth/lock.svg";
 import phone from "../assets/auth/phones.png";
 import show from "../assets/auth/show.svg";
 import hide from "../assets/auth/hide.svg";
-import { useState } from "react";
-import Link from "next/link";
+import { login } from "@/utils/https/auth";
+import { useRouter } from "next/router";
+import { useMemo, useState } from "react";
 
 function Login() {
+  const controller = useMemo(() => new AbortController(), []);
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState("");
+  const [input, setInput] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [isInvalid, setInvalid] = useState(false);
+  const [msgFetch, setMsgFetch] = useState("");
+
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const onChangeForm = (e) => {
+    const { name, value } = e.target;
+    if (value) {
+      setInput(true);
+    } else {
+      setInput(false);
+    }
+    if (name === "email") setInvalid(false);
+    setForm((form) => {
+      return { ...form, [name]: value };
+    });
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    try {
+      const result = await login(form, controller);
+      console.log(result);
+      if (result.status === 200) {
+        setLoading(false);
+        console.log("SUKSES");
+        router.push("/pin");
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          setMsgFetch("Email / Password Invalid");
+        }
+        if (error.response.status === 404) {
+          setMsgFetch(error.response.data.msg);
+        }
+        setInvalid(true);
+        setLoading(false);
+      }
+    }
+  };
+
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handleNavigate = (to) => {
+    router.push(to);
   };
+
   return (
     <>
       <Head>
@@ -67,22 +119,30 @@ function Login() {
             <form className="mt-16">
               <div>
                 <span className="relative">
-                  <span className="absolute bottom-0">
-                    <Image src={email} alt="email" />
-                  </span>
+                  <i
+                    className={`bi bi-envelope-fill text-2xl absolute -top-2 ${
+                      input ? "text-primary" : "text-font-placeholder"
+                    }`}
+                  ></i>
                   <input
                     type="email"
                     placeholder="Enter your e-mail"
-                    className="placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none"
-                    autoComplete="off"
+                    className={`placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none ${
+                      input ? "border-b-primary" : "border-b-font-placeholder"
+                    }`}
+                    name="email"
+                    value={form.email}
+                    onChange={onChangeForm}
                   />
                 </span>
               </div>
               <div className="mt-16">
                 <span className="relative">
-                  <span className="absolute bottom-0">
-                    <Image src={lock} alt="email" />
-                  </span>
+                  <i
+                    className={`bi bi-lock-fill text-2xl absolute -top-2 ${
+                      input ? "text-primary" : "text-font-placeholder"
+                    }`}
+                  ></i>
                   <span className="absolute bottom-0 right-4 w-4 h-4">
                     <Image
                       src={showPassword ? show : hide}
@@ -93,24 +153,48 @@ function Login() {
                   </span>
                   <input
                     type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    className="placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none"
-                    autoComplete="off"
-                    onChange={handlePasswordChange}
+                    placeholder="Create your password"
+                    className={`placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none ${
+                      input ? "border-b-primary" : "border-b-font-placeholder"
+                    }`}
+                    name="password"
+                    value={form.password}
+                    onChange={onChangeForm}
                   />
                 </span>
               </div>
-              <Link href="/forgot">
-                <p className="text-end mt-5 cursor-pointer">Forgot password?</p>
-              </Link>
-              <div className="mt-20 text-center py-4 rounded-lg cursor-pointer disabled bg-secondary w-full border-none">
-                Login
-              </div>
+              <p
+                className="text-end mt-5 cursor-pointer"
+                onClick={() => handleNavigate("/forgot")}
+              >
+                Forgot password?
+              </p>
+              <p className="w-full text-center my-5 text-font-error font-semibold">
+                {isInvalid && msgFetch}
+              </p>
+              {isLoading ? (
+                <progress className="progress progress-secondary w-full"></progress>
+              ) : (
+                <button
+                  onClick={handleLogin}
+                  disabled={
+                    isInvalid || form.email === "" || form.password === ""
+                  }
+                  className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
+                    input ? "bg-primary text-white" : "bg-secondary"
+                  }`}
+                >
+                  Login
+                </button>
+              )}
               <p className="text-center mt-10">
                 Don’t have an account? Let’s{" "}
-                <Link href="/signup">
-                  <span className="cursor-pointer text-primary">Sign Up</span>
-                </Link>
+                <span
+                  className="cursor-pointer text-primary"
+                  onClick={() => handleNavigate("/signup")}
+                >
+                  Sign Up
+                </span>
               </p>
             </form>
           </div>
