@@ -21,10 +21,10 @@ function Login() {
   };
   return (
     <>
+      <Head>
+        <title>Fazzpay - Login</title>
+      </Head>
       <main>
-        <Head>
-          <title>Fazzpay - Login</title>
-        </Head>
         <section className="flex">
           <div className="relative lg:flex-[2]">
             <div className="absolute -z-10 w-full">
@@ -38,7 +38,7 @@ function Login() {
               />
             </div>
             <div className="pl-36 pr-32">
-              <h1 className="text-3xl text-font-secondary text mt-12 font-bold">
+              <h1 className="text-3xl text-font-secondary text mt-12 font-bold font-nunitosans">
                 FazzPay
               </h1>
               <div className="mt-[120%] ">
@@ -74,6 +74,7 @@ function Login() {
                     type="email"
                     placeholder="Enter your e-mail"
                     className="placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none"
+                    autoComplete="off"
                   />
                 </span>
               </div>
@@ -94,6 +95,7 @@ function Login() {
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     className="placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none"
+                    autoComplete="off"
                     onChange={handlePasswordChange}
                   />
                 </span>

@@ -23,6 +23,9 @@ module.exports = {
         'font-secondary-blur': '#DFDCDC',
         'font-placeholder': '#A9A9A9CC',
       },
+      fontFamily: {
+        nunitosans: ["Nunito Sans"],
+      },
     },
   },
   plugins: [require("daisyui")],
