@@ -1,8 +1,13 @@
 import placeholder from "../assets/header/Placeholder.png";
 import Image from "next/image";
 import notification from "../assets/header/bell.svg";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const firstname = useSelector((state) => state.user.data.firstName);
+  const lastname = useSelector((state) => state.user.data.lastName);
+  const name = `${firstname} ${lastname}`;
+  console.log(name);
   return (
     <>
       <nav className="px-36 py-12 bg-white rounded-b-2xl shadow-xl">
@@ -17,7 +22,7 @@ function Header() {
               />
             </div>
             <div>
-              <p className="font-bold text-lg">Robert Chandler</p>
+              <p className="font-bold text-lg">admin</p>
               <p className="text-font-primary-blur">+62 8139 3877 7946</p>
             </div>
             <div className="w-6 h-6">
