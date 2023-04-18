@@ -1,21 +1,24 @@
-import Head from "next/head";
+import Title from "@/components/title";
 import Image from "next/image";
-import bg from "../assets/auth/background.png";
-import phone from "../assets/auth/phones.png";
 import show from "../assets/auth/show.svg";
 import hide from "../assets/auth/hide.svg";
+import AsideAuth from "@/components/asideAuth";
 import { login } from "@/utils/https/auth";
+import { getProfile } from "@/utils/https/user";
 import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
+import { userAction } from "@/redux/slices/auth";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const controller = useMemo(() => new AbortController(), []);
+  const dispatch = useDispatch();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [input, setInput] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isInvalid, setInvalid] = useState(false);
-  const [msgFetch, setMsgFetch] = useState("");
+  const [msg, setMsg] = useState("");
 
   const [form, setForm] = useState({
     firstName: "",
@@ -41,26 +44,39 @@ function Login() {
     event.preventDefault();
     setLoading(true);
     try {
-      const result = await login(form, controller);
-      // console.log(result.data.data.pin);
-      const checkPin = result.data.data.pin;
-      if (result.status === 200) {
+      if (form.email === "" || form.password === "") {
+        setMsg("Input is required!");
+        setInvalid(true);
         setLoading(false);
-        console.log("SUKSES");
-        if (checkPin === null) {
+        return;
+      }
+      const resultLogin = await login(form, controller);
+      // console.log(result.data.data.pin);
+      const result = resultLogin.data.data;
+      if (resultLogin.status === 200) {
+        const resultProfile = await getProfile(
+          result.token,
+          result.id,
+          controller
+        );
+        setLoading(false);
+        if (result.pin === null) {
           router.push("/pin");
         } else {
           router.push("/home");
         }
+        console.log(resultProfile);
+        dispatch(userAction.loginRedux(result));
+        dispatch(userAction.getDataProfile(resultProfile.data.data));
       }
     } catch (error) {
       console.log(error);
       if (error.response) {
         if (error.response.status === 400) {
-          setMsgFetch("Email / Password Invalid");
+          setMsg("Email / Password Invalid");
         }
         if (error.response.status === 404) {
-          setMsgFetch(error.response.data.msg);
+          setMsg(error.response.data.msg);
         }
         setInvalid(true);
         setLoading(false);
@@ -77,39 +93,11 @@ function Login() {
   };
 
   return (
-    <>
-      <Head>
-        <title>Fazzpay - Login</title>
-      </Head>
+    <Title title="Login">
       <main>
         <section className="flex">
           <div className="relative lg:flex-[2]">
-            <div className="absolute -z-10 w-full">
-              <Image src={bg} alt="background" className="w-full h-full" />
-            </div>
-            <div className="absolute w-[512px] h-[575px] translate-x-28 translate-y-32 ">
-              <Image
-                src={phone}
-                alt="phone"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="pl-36 pr-32">
-              <h1 className="text-3xl text-font-secondary text mt-12 font-bold font-nunitosans">
-                FazzPay
-              </h1>
-              <div className="mt-[120%] ">
-                <p className="text-font-secondary font-bold text-3xl">
-                  App that Covering Banking Needs.
-                </p>
-                <p className="text-[#FFFFFFCC] text-base mt-7">
-                  FazzPay is an application that focussing in banking needs for
-                  all users in the world. Always updated and always following
-                  world trends. 5000+ users registered in FazzPay everyday with
-                  worldwide users coverage.
-                </p>
-              </div>
-            </div>
+            <AsideAuth />
           </div>
           <div className="lg:flex-1 pl-12 pr-36 py-28 ">
             <h1 className="text-font-primary text-2xl font-bold">
@@ -175,16 +163,13 @@ function Login() {
                 Forgot password?
               </p>
               <p className="w-full text-center my-5 text-font-error font-semibold">
-                {isInvalid && msgFetch}
+                {isInvalid && msg}
               </p>
               {isLoading ? (
                 <progress className="progress progress-secondary w-full"></progress>
               ) : (
                 <button
                   onClick={handleLogin}
-                  disabled={
-                    isInvalid || form.email === "" || form.password === ""
-                  }
                   className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
                     input ? "bg-primary text-white" : "bg-secondary"
                   }`}
@@ -205,7 +190,7 @@ function Login() {
           </div>
         </section>
       </main>
-    </>
+    </Title>
   );
 }
 

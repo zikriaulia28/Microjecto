@@ -1,9 +1,6 @@
-import Head from "next/head";
+import Title from "@/components/title";
+import AsideAuth from "@/components/asideAuth";
 import Image from "next/image";
-import bg from "../assets/auth/background.png";
-import email from "../assets/auth/email.svg";
-import lock from "../assets/auth/lock.svg";
-import phone from "../assets/auth/phones.png";
 import show from "../assets/auth/show.svg";
 import hide from "../assets/auth/hide.svg";
 import { useRouter } from "next/router";
@@ -16,7 +13,7 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isInvalid, setInvalid] = useState(false);
-  const [msgFetch, setMsgFetch] = useState("");
+  const [msg, setMsg] = useState("");
   const [input, setInput] = useState(false);
   const [form, setForm] = useState({
     firstName: "",
@@ -43,9 +40,34 @@ function Signup() {
     setLoading(true);
     // console.log(form);
     try {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (
+        form.email === "" ||
+        form.password === "" ||
+        form.firstName === "" ||
+        form.lastName === ""
+      ) {
+        setMsg("Input is required!");
+        setInvalid(true);
+        setLoading(false);
+        return;
+      }
+      if (!emailRegex.test(form.email)) {
+        setMsg("Email is invalid!");
+        setInvalid(true);
+        setLoading(false);
+        return;
+      }
+      if (form.password.length < 4) {
+        setMsg("password of at least 4 characters!");
+        setInvalid(true);
+        setLoading(false);
+        return;
+      }
+
       const result = await register(form, controller);
-      // console.log(result);
       if (result.status === 200) {
+        // console.log(result);
         setLoading(false);
         console.log("SUKSES");
         router.push("/login");
@@ -54,7 +76,7 @@ function Signup() {
       console.log(error);
       if (error.response && error.response.status === 400) {
         // console.log(error.response.data.msg);
-        setMsgFetch(error.response.data.msg);
+        setMsg(error.response.data.msg);
         setInvalid(true);
         setLoading(false);
       }
@@ -69,43 +91,11 @@ function Signup() {
     router.push(to);
   };
   return (
-    <>
+    <Title title={"Sign Up"}>
       <main>
-        <Head>
-          <title>Fazzpay - Sign Up</title>
-        </Head>
         <section className="flex lg:h-[920px]">
           <div className="relative lg:flex-[2]">
-            <div className="absolute -z-10 w-full">
-              <Image
-                src={bg}
-                alt="background"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute w-[512px] h-[575px] translate-x-28 translate-y-32 ">
-              <Image
-                src={phone}
-                alt="phone"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="pl-36 pr-32">
-              <h1 className="text-3xl text-font-secondary text mt-12 font-bold">
-                FazzPay
-              </h1>
-              <div className="mt-[120%] ">
-                <p className="text-font-secondary font-bold text-3xl">
-                  App that Covering Banking Needs.
-                </p>
-                <p className="text-[#FFFFFFCC] text-base mt-7">
-                  FazzPay is an application that focussing in banking needs for
-                  all users in the world. Always updated and always following
-                  world trends. 5000+ users registered in FazzPay everyday with
-                  worldwide users coverage.
-                </p>
-              </div>
-            </div>
+            <AsideAuth />
           </div>
           <div className="lg:flex-1 pl-12 pr-36 py-28 ">
             <h1 className="text-font-primary text-2xl font-bold">
@@ -205,21 +195,14 @@ function Signup() {
                 </span>
               </div>
               <p className="w-full text-center my-5 text-font-error font-semibold">
-                {isInvalid && msgFetch}
+                {isInvalid && msg}
               </p>
               {isLoading ? (
                 <progress className="progress progress-secondary w-full"></progress>
               ) : (
                 <button
                   onClick={handleSignup}
-                  disabled={
-                    isInvalid ||
-                    isLoading ||
-                    form.email === "" ||
-                    form.password === "" ||
-                    form.firstName === "" ||
-                    form.lastName === ""
-                  }
+                  disabled={isInvalid || isLoading}
                   className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
                     input ? "bg-primary text-white" : "bg-secondary"
                   }`}
@@ -240,7 +223,7 @@ function Signup() {
           </div>
         </section>
       </main>
-    </>
+    </Title>
   );
 }
 
