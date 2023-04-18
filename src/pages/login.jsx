@@ -42,11 +42,16 @@ function Login() {
     setLoading(true);
     try {
       const result = await login(form, controller);
-      console.log(result);
+      // console.log(result.data.data.pin);
+      const checkPin = result.data.data.pin;
       if (result.status === 200) {
         setLoading(false);
         console.log("SUKSES");
-        router.push("/pin");
+        if (checkPin === null) {
+          router.push("/pin");
+        } else {
+          router.push("/home");
+        }
       }
     } catch (error) {
       console.log(error);

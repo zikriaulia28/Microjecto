@@ -2,10 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import bg from "../assets/auth/background.png";
 import phone from "../assets/auth/phones.png";
-import { useRef } from "react";
-import Link from "next/link";
+import { useRef, useState } from "react";
+// import Link from "next/link";
 
 function Pin() {
+  const [input, setInput] = useState(false);
+  const [newPin, setNewPins] = useState("");
   const input1Ref = useRef(null);
   const input2Ref = useRef(null);
   const input3Ref = useRef(null);
@@ -18,8 +20,29 @@ function Pin() {
       if (inputRef.current) {
         inputRef.current.focus();
       }
+      setInput(true);
+    } else {
+      setInput(false);
     }
+
+    const input1 = input1Ref.current.value;
+    const input2 = input2Ref.current.value;
+    const input3 = input3Ref.current.value;
+    const input4 = input4Ref.current.value;
+    const input5 = input5Ref.current.value;
+    const input6 = input6Ref.current.value;
+
+    if (!input1 || !input2 || !input3 || !input4 || !input5 || !input6) {
+      document.getElementById("confirm-btn").disabled = true;
+    } else {
+      document.getElementById("confirm-btn").disabled = false;
+    }
+
+    const pins = `${input1}${input2}${input3}${input4}${input5}${input6}`;
+    setNewPins(pins);
   };
+
+  console.log(newPin);
 
   return (
     <>
@@ -71,48 +94,66 @@ function Pin() {
                 <input
                   ref={input1Ref}
                   type="text"
-                  className="border w-12 h-14 rounded-lg outline-none text-center"
+                  className={`border w-12 h-14 rounded-lg outline-none text-center ${
+                    input ? "border-primary" : "border-font-placeholder"
+                  }`}
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input2Ref)}
                 />
                 <input
                   ref={input2Ref}
                   type="text"
-                  className="border w-12 h-14 rounded-lg outline-none text-center"
+                  className={`border w-12 h-14 rounded-lg outline-none text-center ${
+                    input ? "border-primary" : "border-font-placeholder"
+                  }`}
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input3Ref)}
                 />
                 <input
                   ref={input3Ref}
                   type="text"
-                  className="border w-12 h-14 rounded-lg outline-none text-center"
+                  className={`border w-12 h-14 rounded-lg outline-none text-center ${
+                    input ? "border-primary" : "border-font-placeholder"
+                  }`}
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input4Ref)}
                 />
                 <input
                   ref={input4Ref}
                   type="text"
-                  className="border w-12 h-14 rounded-lg outline-none text-center"
+                  className={`border w-12 h-14 rounded-lg outline-none text-center ${
+                    input ? "border-primary" : "border-font-placeholder"
+                  }`}
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input5Ref)}
                 />
                 <input
                   ref={input5Ref}
                   type="text"
-                  className="border w-12 h-14 rounded-lg outline-none text-center"
+                  className={`border w-12 h-14 rounded-lg outline-none text-center ${
+                    input ? "border-primary" : "border-font-placeholder"
+                  }`}
                   maxLength={1}
                   onChange={(event) => handleInputChange(event, input6Ref)}
                 />
                 <input
                   ref={input6Ref}
                   type="text"
-                  className="border w-12 h-14 rounded-lg outline-none text-center"
+                  className={`border w-12 h-14 rounded-lg outline-none text-center ${
+                    input ? "border-primary" : "border-font-placeholder"
+                  }`}
+                  onChange={(event) => handleInputChange(event, input6Ref)}
                   maxLength={1}
                 />
               </div>
-              <div className="mt-20 text-center py-4 rounded-lg cursor-pointer disabled bg-secondary w-full border-none">
+              <button
+                id="confirm-btn"
+                className={`mt-20 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
+                  input ? "bg-primary text-white" : "bg-secondary"
+                }`}
+              >
                 Confirm
-              </div>
+              </button>
             </form>
           </div>
         </section>
