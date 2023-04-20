@@ -25,3 +25,12 @@ export const editProfile = (token, userId, body, controller) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+export const editPassword = (userId, token, oldPassword, newPassword, confirmPassword, controller) => {
+  const url = `${baseUrl}user/password/${userId}`;
+  const data = { oldPassword, newPassword, confirmPassword };
+  return axios.patch(url, data, {
+    signal: controller.signal,
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};

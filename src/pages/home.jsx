@@ -1,10 +1,8 @@
 import Title from "@/components/title";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import Image from "next/image";
-import arrowUp from "../assets/home/arrow-up.svg";
-import plus from "../assets/home/plus.svg";
-import Aside from "@/components/aside";
+import Aside from "@/components/Aside";
 import placeholder from "../assets/header/Placeholder.png";
 import { getDashboard } from "@/utils/https/user";
 import { useEffect, useMemo, useState } from "react";

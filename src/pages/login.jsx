@@ -2,7 +2,7 @@ import Title from "@/components/title";
 import Image from "next/image";
 import show from "../assets/auth/show.svg";
 import hide from "../assets/auth/hide.svg";
-import AsideAuth from "@/components/asideAuth";
+import AsideAuth from "@/components/AsideAuth";
 import { login } from "@/utils/https/auth";
 import { getProfile } from "@/utils/https/user";
 import { useRouter } from "next/router";
@@ -21,8 +21,6 @@ function Login() {
   const [msg, setMsg] = useState("");
 
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
   });
@@ -40,8 +38,8 @@ function Login() {
     });
   };
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
       if (form.email === "" || form.password === "") {

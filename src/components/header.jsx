@@ -22,7 +22,7 @@ function Header() {
               />
             </div>
             <div>
-              <p className="font-bold text-lg">admin</p>
+              <p className="font-bold text-lg">{name}</p>
               <p className="text-font-primary-blur">+62 8139 3877 7946</p>
             </div>
             <div className="w-6 h-6">

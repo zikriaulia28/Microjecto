@@ -1,5 +1,5 @@
 import Title from "@/components/title";
-import AsideAuth from "@/components/asideAuth";
+import AsideAuth from "@/components/AsideAuth";
 import Image from "next/image";
 import show from "../assets/auth/show.svg";
 import hide from "../assets/auth/hide.svg";

@@ -1,5 +1,5 @@
 import Title from "@/components/title";
-import AsideAuth from "@/components/asideAuth";
+import AsideAuth from "@/components/AsideAuth";
 import { useRef, useState, useMemo } from "react";
 import { changePin } from "@/utils/https/auth";
 import { useRouter } from "next/router";

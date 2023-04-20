@@ -1,17 +1,25 @@
 import Title from "@/components/title";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import Aside from "@/components/aside";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Aside from "@/components/Aside";
 import PersonalInfo from "@/components/personalInfo";
 import ChangePassword from "@/components/changePassword";
 import ChangePin from "@/components/changePin";
-
-import { useState } from "react";
+import { logout } from "@/utils/https/auth";
+import { useState, useMemo } from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import Modal from "@/components/modal";
 
 function Profile() {
+  const router = useRouter();
+  const controller = useMemo(() => new AbortController(), []);
   const [personalInfo, setPersonalInfo] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
   const [changePin, setChangePin] = useState(false);
+  const [modal, setModal] = useState(false);
+  const userStore = useSelector((state) => state.user);
+  const token = userStore.token;
 
   const handlerPersonal = () => {
     setPersonalInfo(true);
@@ -23,6 +31,19 @@ function Profile() {
 
   const handlerPin = () => {
     setChangePin(true);
+  };
+
+  const handlerLogout = async () => {
+    setModal(true);
+    try {
+      const result = await logout(token, controller);
+      console.log(result);
+      if (result.status === 200) {
+        router.push("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -74,7 +95,7 @@ function Profile() {
                   </button>
                   <button
                     className="flex justify-between w-[26rem] bg-secondary py-4 px-5 rounded-xl"
-                    onClick={handlerPhone}
+                    onClick={handlerLogout}
                   >
                     <p className="font-bold">Logout</p>
                   </button>
@@ -82,6 +103,7 @@ function Profile() {
               </div>
             </>
           )}
+          <Modal />
         </section>
       </main>
       <Footer />
