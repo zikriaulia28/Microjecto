@@ -10,7 +10,7 @@ function Header() {
   console.log(name);
   return (
     <>
-      <nav className="px-36 py-12 bg-white rounded-b-2xl shadow-xl">
+      <nav className="px-4 xl:px-36 py-12 bg-white rounded-b-2xl shadow-xl">
         <div className="flex justify-between">
           <h1 className="font-bold text-3xl text-primary">FazzPay</h1>
           <div className="flex gap-6 items-center">

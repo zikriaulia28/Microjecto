@@ -13,7 +13,7 @@ function PersonalInfo() {
       {manage ? (
         <EditPhone />
       ) : (
-        <div className="flex flex-col p-8 w-[53.125rem] h-[42.375rem] bg-white rounded-xl shadow-lg">
+        <div className="flex flex-col p-8 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg">
           <h1 className="font-bold text-lg">Personal Information</h1>
           <p className="w-[21.375rem] text-font-primary-blur mt-6">
             We got your personal information from the sign up proccess. If you

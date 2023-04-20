@@ -49,7 +49,7 @@ function Profile() {
   return (
     <Title title={"Profile"}>
       <Header />
-      <main className="flex gap-5 px-36 py-10 bg-secondary font-nunitosans">
+      <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
         <Aside />
 
         <section>
@@ -59,7 +59,7 @@ function Profile() {
 
           {!personalInfo && !changePassword && !changePin && (
             <>
-              <div className="flex flex-col items-center  pt-12 w-[53.125rem] h-[42.375rem] bg-white rounded-xl shadow-lg px-52">
+              <div className="flex flex-col items-center  pt-12 w-[393px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg px-40 pb-10 xl:px-52">
                 <div className="w-20 h-20 bg-slate-400 rounded-xl"></div>
                 <div className="flex gap-3 mt-3">
                   <i className="bi bi-pencil"></i>
