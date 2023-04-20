@@ -16,7 +16,7 @@ function Aside() {
     }
   };
   return (
-    <aside className="hidden xl:flex flex-col justify-between w-[16.875rem] h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow-lg">
+    <aside className="hidden lg:flex flex-col justify-between w-[16.875rem] h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow-lg">
       <div>
         <div className="flex gap-5 cursor-pointer relative">
           <div className="border border-l-4 border-l-primary h-full absolute -left-9"></div>

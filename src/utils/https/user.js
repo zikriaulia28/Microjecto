@@ -34,3 +34,11 @@ export const editPassword = (userId, token, oldPassword, newPassword, confirmPas
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+export const editImage = (token, userId, image, controller) => {
+  const url = `${baseUrl}user/image/${userId}`;
+  return axios.patch(url, image, {
+    signal: controller.signal,
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};

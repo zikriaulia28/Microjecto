@@ -98,8 +98,6 @@ function ChangePassword() {
     }
   };
 
-  console.log(oldPassword);
-
   return (
     <div className="flex flex-col p-8 w-[53.125rem] h-[42.375rem] bg-white rounded-xl shadow-lg">
       <h1 className="font-bold text-lg">Change Password</h1>
