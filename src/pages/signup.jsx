@@ -92,22 +92,25 @@ function Signup() {
   };
   return (
     <Title title={"Sign Up"}>
-      <main>
+      <main className="font-nunitosans">
         <section className="flex lg:h-[920px]">
-          <div className="relative lg:flex-[2]">
+          <div className="relative hidden lg:grid lg:flex-[2]">
             <AsideAuth />
           </div>
-          <div className="lg:flex-1 pl-12 pr-36 py-28 ">
-            <h1 className="text-font-primary text-2xl font-bold">
+          <div className="lg:flex-1 w-full bg-secondary lg:bg-white  pt-10 lg:pl-12 lg:pr-36 lg:py-28">
+            <h1 className="hidden lg:flex text-font-primary text-2xl font-bold">
               Start Accessing Banking Needs With All Devices and All Platforms
               With 30.000+ Users
             </h1>
-            <p className="text-font-primary-blur mt-7">
+            <p className="hidden lg:flex text-font-primary-blur mt-7">
               Transfering money is eassier than ever, you can access FazzPay
               wherever you are. Desktop, laptop, mobile phone? we cover all of
               that for you!
             </p>
-            <form className="mt-16">
+            <h1 className="text-center text-primary font-bold text-3xl lg:hidden">
+              FazzPay
+            </h1>
+            <form className="mt-16 bg-white border border-white rounded-t-3xl w-full px-4 py-10 ">
               <div>
                 <span className="relative">
                   <i

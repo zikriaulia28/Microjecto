@@ -30,22 +30,49 @@ function Header() {
         <div className="flex justify-between">
           <h1 className="font-bold text-3xl text-primary">FazzPay</h1>
           {token ? (
-            <div className="flex gap-6 items-center">
-              <div className="w-12 h-12 rounded-xl">
-                <Image
-                  src={placeholder}
-                  alt="profile"
-                  className="w-full h-full object-cover rounded-xl"
-                />
+            <>
+              <div className="hidden lg:flex gap-6 items-center">
+                <div className="w-12 h-12 rounded-xl">
+                  <Image
+                    src={placeholder}
+                    alt="profile"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                </div>
+                <div>
+                  <p className="font-bold text-lg">{name}</p>
+                  <p className="text-font-primary-blur">+62 8139 3877 7946</p>
+                </div>
+                <div className="w-6 h-6">
+                  <Image src={notification} alt="notification" />
+                </div>
               </div>
-              <div>
-                <p className="font-bold text-lg">{name}</p>
-                <p className="text-font-primary-blur">+62 8139 3877 7946</p>
+              <div className="lg:hidden" onClick={handleShow}>
+                <i className="bi bi-list text-4xl"></i>
               </div>
-              <div className="w-6 h-6">
-                <Image src={notification} alt="notification" />
-              </div>
-            </div>
+              {show && (
+                <>
+                  <div className="bg-white absolute right-0 z-50 lg:hidden top-20 w-full px-4 py-6 rounded-xl flex flex-row justify-between transition-all">
+                    <div className="w-12 h-12 rounded-xl">
+                      <Image
+                        src={placeholder}
+                        alt="profile"
+                        className="w-full h-full object-cover rounded-xl"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold text-lg">{name}</p>
+                      <p className="text-font-primary-blur">
+                        +62 8139 3877 7946
+                      </p>
+                    </div>
+                    <div className="w-6 h-6">
+                      <Image src={notification} alt="notification" />
+                    </div>
+                  </div>
+                </>
+              )}
+            </>
           ) : (
             <>
               <div className="hidden lg:flex gap-8">

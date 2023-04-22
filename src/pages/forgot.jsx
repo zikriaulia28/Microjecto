@@ -26,7 +26,7 @@ function Login() {
           <title>Fazzpay - Forgot</title>
         </Head>
         <section className="flex">
-          <div className="relative lg:flex-[2]">
+          <div className="relative hidden lg:grid lg:flex-[2]">
             <div className="absolute -z-10 w-full">
               <Image src={bg} alt="background" className="w-full h-full" />
             </div>
@@ -54,17 +54,20 @@ function Login() {
               </div>
             </div>
           </div>
-          <div className="lg:flex-1 pl-12 pr-36 py-28 ">
-            <h1 className="text-font-primary text-2xl font-bold">
+          <div className="lg:flex-1 w-full bg-secondary lg:bg-white  pt-10 lg:pl-12 lg:pr-36 lg:py-28 ">
+            <h1 className="hidden lg:flex text-font-primary text-2xl font-bold">
               Did You Forgot Your Password? Don’t Worry, You Can Reset Your
               Password In a Minutes.
             </h1>
-            <p className="text-font-primary-blur mt-7">
+            <p className="hidden lg:flex text-font-primary-blur mt-7">
               To reset your password, you must type your e-mail and we will send
               a link to your email and you will be directed to the reset
               password screens.
             </p>
-            <form className="mt-16">
+            <h1 className="text-center text-primary font-bold text-3xl lg:hidden">
+              FazzPay
+            </h1>
+            <form className="mt-16 bg-white border border-white rounded-t-3xl w-full px-4 py-10 ">
               <div>
                 <span className="relative">
                   <span className="absolute bottom-0">

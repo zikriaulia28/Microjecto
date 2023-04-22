@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 function SuccessCreate() {
   const router = useRouter();
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full ">
       <span className="w-14 h-14 flex justify-center items-center rounded-full bg-green-500">
         <i className="bi bi-check-lg text-white text-4xl"></i>
       </span>
@@ -37,6 +37,7 @@ function Pin() {
   const [isLoading, setLoading] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
   const [isInvalid, setInvalid] = useState(false);
+  const [msg, setMsg] = useState(false);
   const [input, setInput] = useState(false);
   const [pin, setPin] = useState("");
   const input1Ref = useRef(null);
@@ -59,6 +60,12 @@ function Pin() {
       console.log(error);
       if (error.response && error.response.status === 400) {
         setInvalid(true);
+        setMsg(error.response.data.msg);
+        setLoading(false);
+      }
+      if (error.response && error.response.status === 403) {
+        setInvalid(true);
+        setMsg("Please Login");
         setLoading(false);
       }
     }
@@ -95,26 +102,29 @@ function Pin() {
 
   return (
     <Title title="Create PIN">
-      <main>
+      <main className="font-nunitosans">
         <section className="flex">
-          <div className="relative lg:flex-[2]">
+          <div className="relative hidden lg:grid lg:flex-[2]">
             <AsideAuth />
           </div>
-          <div className="lg:flex-1 pl-12 pr-36 py-28 ">
+          <div className="lg:flex-1 w-full bg-secondary lg:bg-white  px-4 pt-10 lg:pl-12 lg:pr-36 lg:py-28 ">
             {isSuccess ? (
               <SuccessCreate />
             ) : (
               <>
-                <h1 className="text-font-primary text-2xl font-bold">
+                <h1 className="hidden lg:flex text-font-primary text-2xl font-bold">
                   Secure Your Account, Your Wallet, and Your Data With 6 Digits
                   PIN That You Created Yourself.
                 </h1>
-                <p className="text-font-primary-blur mt-7">
+                <p className="hidden lg:flex text-font-primary-blur mt-7">
                   Create 6 digits pin to secure all your money and your data in
                   FazzPay app. Keep it secret and don’t tell anyone about your
                   FazzPay account password and the PIN.
                 </p>
-                <form className="mt-16">
+                <h1 className="text-center text-primary font-bold text-3xl lg:hidden">
+                  FazzPay
+                </h1>
+                <form className="mt-16 bg-white border border-white rounded-t-3xl w-full px-4 py-10 ">
                   <div className="flex gap-5">
                     <input
                       ref={input1Ref}
@@ -185,7 +195,7 @@ function Pin() {
                     />
                   </div>
                   <p className="w-full text-center my-5 text-font-error font-semibold">
-                    {isInvalid && "Pin must be in numeric format.!"}
+                    {isInvalid && msg}
                   </p>
                   {isLoading ? (
                     <progress className="progress progress-secondary w-full"></progress>

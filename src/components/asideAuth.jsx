@@ -8,7 +8,7 @@ function AsideAuth() {
       <div className="absolute -z-10 w-full">
         <Image src={bg} alt="background" className="w-full h-full" />
       </div>
-      <div className="absolute w-[512px] h-[575px] translate-x-28 translate-y-32 ">
+      <div className="absolute xl:w-[512px] xl:h-[575px] translate-x-28 translate-y-32 ">
         <Image src={phone} alt="phone" className="w-full h-full object-cover" />
       </div>
       <div className="pl-36 pr-32">
