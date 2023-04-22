@@ -9,11 +9,7 @@ import { useRouter } from "next/router";
 function Aside() {
   const router = useRouter();
   const handleNavigate = (to) => {
-    if (router.pathname === to) {
-      router.reload();
-    } else {
-      router.push(to);
-    }
+    router.push(to);
   };
   return (
     <aside className="hidden lg:flex flex-col justify-between w-[16.875rem] h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow-lg">

@@ -1,19 +1,22 @@
-import EditPhone from "@/components/editPhone";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Title from "@/components/title";
 import { useState } from "react";
+import Aside from "@/components/Aside";
+import { useRouter } from "next/router";
 
 function PersonalInfo() {
-  const [manage, setManage] = useState(false);
-
-  const handlerManage = () => {
-    setManage(true);
+  const router = useRouter();
+  const handleNavigate = (to) => {
+    router.push(to);
   };
 
   return (
-    <>
-      {manage ? (
-        <EditPhone />
-      ) : (
-        <div className="flex flex-col p-8 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg">
+    <Title title={"Personal Info"}>
+      <Header />
+      <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
+        <Aside />
+        <section className="flex flex-col p-8 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg">
           <h1 className="font-bold text-lg">Personal Information</h1>
           <p className="w-[21.375rem] text-font-primary-blur mt-6">
             We got your personal information from the sign up proccess. If you
@@ -41,15 +44,16 @@ function PersonalInfo() {
               </div>
               <p
                 className="text-primary font-semibold cursor-pointer"
-                onClick={handlerManage}
+                onClick={() => handleNavigate("/profile/editPhone")}
               >
                 Manage
               </p>
             </div>
           </div>
-        </div>
-      )}
-    </>
+        </section>
+      </main>
+      <Footer />
+    </Title>
   );
 }
 
