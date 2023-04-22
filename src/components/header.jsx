@@ -4,13 +4,19 @@ import notification from "../assets/header/bell.svg";
 import { useSelector } from "react-redux";
 
 function Header() {
+  const token = useSelector((state) => state.user.token);
+  // console.log(token);
   const firstname = useSelector((state) => state.user.data.firstName);
   const lastname = useSelector((state) => state.user.data.lastName);
   const name = `${firstname} ${lastname}`;
   console.log(name);
   return (
     <>
-      <nav className="px-4 xl:px-36 py-12 bg-white rounded-b-2xl shadow-xl">
+      <nav
+        className={`px-4 xl:px-36 py-12 bg-white rounded-b-2xl ${
+          token ? "shadow-xl" : "shadow-none"
+        } `}
+      >
         <div className="flex justify-between">
           <h1 className="font-bold text-3xl text-primary">FazzPay</h1>
           <div className="flex gap-6 items-center">

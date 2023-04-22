@@ -57,6 +57,12 @@ const userSlice = createSlice({
         },
       };
     },
+    logoutRedux: (prevState) => {
+      return {
+        ...prevState,
+        token: null,
+      };
+    },
   },
   extraReducers: {
     [loginThunk.pending]: (prevState) => {

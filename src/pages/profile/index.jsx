@@ -2,8 +2,6 @@ import Title from "@/components/title";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Aside from "@/components/Aside";
-import ChangePassword from "@/pages/profile/changePassword";
-import ChangePin from "@/pages/profile/changePin";
 import { logout } from "@/utils/https/auth";
 import { editImage, getProfile } from "@/utils/https/user";
 import { useState, useMemo, useEffect } from "react";
@@ -13,10 +11,13 @@ import Modal from "@/components/modal";
 import placeholder from "../../assets/header/Placeholder.png";
 import Image from "next/image";
 import Spinner from "@/components/spinner";
+import { userAction } from "@/redux/slices/auth";
+import { useDispatch } from "react-redux";
 
 function Profile() {
   const router = useRouter();
   const controller = useMemo(() => new AbortController(), []);
+  const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const [image, setimage] = useState();
   const [save, setSave] = useState(false);
@@ -77,7 +78,8 @@ function Profile() {
       const result = await logout(token, controller);
       console.log(result);
       if (result.status === 200) {
-        router.push("/login");
+        dispatch(userAction.logoutRedux());
+        router.push("/");
       }
     } catch (error) {
       console.log(error);
