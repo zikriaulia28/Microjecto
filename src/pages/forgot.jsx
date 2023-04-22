@@ -8,8 +8,9 @@ import show from "../assets/auth/show.svg";
 import hide from "../assets/auth/hide.svg";
 import { useState } from "react";
 import Link from "next/link";
+import PublicRoute from "@/utils/wrapper/publicRoute";
 
-function Login() {
+function Forgot() {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const togglePassword = () => {
@@ -91,4 +92,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default PublicRoute(Forgot);

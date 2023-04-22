@@ -6,6 +6,7 @@ import hide from "../assets/auth/hide.svg";
 import { useRouter } from "next/router";
 import { register } from "@/utils/https/auth";
 import { useMemo, useState } from "react";
+import PublicRoute from "@/utils/wrapper/publicRoute";
 
 function Signup() {
   const controller = useMemo(() => new AbortController(), []);
@@ -230,4 +231,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default PublicRoute(Signup);

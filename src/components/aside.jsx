@@ -5,8 +5,10 @@ import grid from "../assets/home/grids.svg";
 import arrowUp from "../assets/home/arrow-up.svg";
 import plus from "../assets/home/plus.svg";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
-function Aside() {
+function Aside(props) {
+  const userStore = useSelector((state) => state.user.data);
   const router = useRouter();
   const handleNavigate = (to) => {
     router.push(to);
@@ -38,7 +40,7 @@ function Aside() {
 
         <div
           className="flex gap-5 cursor-pointer mt-12"
-          onClick={() => handleNavigate("/profile")}
+          onClick={() => router.push(`/profile/${userStore.id}`)}
         >
           <div className="w-7 h-7">
             <Image src={user} alt="user" />

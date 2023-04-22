@@ -4,6 +4,7 @@ import { useRef, useState, useMemo } from "react";
 import { changePin } from "@/utils/https/auth";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import PublicRoute from "@/utils/wrapper/publicRoute";
 
 function SuccessCreate() {
   const router = useRouter();
@@ -222,4 +223,4 @@ function Pin() {
   );
 }
 
-export default Pin;
+export default PublicRoute(Pin);

@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
 import { userAction } from "@/redux/slices/auth";
 import { useDispatch } from "react-redux";
+import PublicRoute from "@/utils/wrapper/publicRoute";
 
 function Login() {
   const controller = useMemo(() => new AbortController(), []);
@@ -195,4 +196,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default PublicRoute(Login);
