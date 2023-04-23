@@ -32,6 +32,7 @@ function Login() {
       setInput(true);
     } else {
       setInput(false);
+      setInvalid(false);
     }
     if (name === "email") setInvalid(false);
     setForm((form) => {
@@ -117,14 +118,14 @@ function Login() {
                   <i
                     className={`bi bi-envelope-fill text-2xl absolute -top-2 ${
                       input ? "text-primary" : "text-font-placeholder"
-                    }`}
+                    } ${isInvalid && "text-red-500"}`}
                   ></i>
                   <input
                     type="email"
                     placeholder="Enter your e-mail"
                     className={`placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none ${
                       input ? "border-b-primary" : "border-b-font-placeholder"
-                    }`}
+                    } ${isInvalid && " border-b-red-500"}`}
                     name="email"
                     value={form.email}
                     onChange={onChangeForm}
@@ -136,7 +137,7 @@ function Login() {
                   <i
                     className={`bi bi-lock-fill text-2xl absolute -top-2 ${
                       input ? "text-primary" : "text-font-placeholder"
-                    }`}
+                    } ${isInvalid && "text-red-500"}`}
                   ></i>
                   <span className="absolute bottom-0 right-4 w-4 h-4">
                     <Image
@@ -151,7 +152,7 @@ function Login() {
                     placeholder="Create your password"
                     className={`placeholder:text-font-placeholder pl-10 border-b-2 w-full py-3 outline-none ${
                       input ? "border-b-primary" : "border-b-font-placeholder"
-                    }`}
+                    } ${isInvalid && " border-b-red-500"}`}
                     name="password"
                     value={form.password}
                     onChange={onChangeForm}

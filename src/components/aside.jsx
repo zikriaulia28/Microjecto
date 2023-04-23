@@ -1,22 +1,42 @@
 import Image from "next/image";
 import user from "../assets/home/user.svg";
-import logout from "../assets/home/log-out.svg";
+import iconLogout from "../assets/home/log-out.svg";
 import grid from "../assets/home/grids.svg";
 import arrowUp from "../assets/home/arrow-up.svg";
 import plus from "../assets/home/plus.svg";
+import { logout } from "@/utils/https/auth";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useMemo } from "react";
+import { userAction } from "@/redux/slices/auth";
 
 function Aside(props) {
-  const userStore = useSelector((state) => state.user.data);
+  const userStore = useSelector((state) => state.user);
+  console.log(userStore);
+  const token = userStore.token;
   const router = useRouter();
-  const handleNavigate = (to) => {
-    router.push(to);
+  const controller = useMemo(() => new AbortController(), []);
+  const dispatch = useDispatch();
+
+  const handlerLogout = async () => {
+    try {
+      const result = await logout(token, controller);
+      console.log(result);
+      if (result.status === 200) {
+        dispatch(userAction.logoutRedux());
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <aside className="hidden lg:flex flex-col justify-between w-[16.875rem] h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow-lg">
       <div>
-        <div className="flex gap-5 cursor-pointer relative">
+        <div
+          className="flex gap-5 cursor-pointer relative"
+          onClick={() => router.push("/dashboard")}
+        >
           <div className="border border-l-4 border-l-primary h-full absolute -left-9"></div>
           <div className="w-7 h-7">
             <Image src={grid} alt="grid" />
@@ -40,7 +60,7 @@ function Aside(props) {
 
         <div
           className="flex gap-5 cursor-pointer mt-12"
-          onClick={() => router.push(`/profile/${userStore.id}`)}
+          onClick={() => router.push(`/profile/${userStore.data.id}`)}
         >
           <div className="w-7 h-7">
             <Image src={user} alt="user" />
@@ -48,9 +68,9 @@ function Aside(props) {
           <p className="text-font-primary-blurs text-lg">Profile</p>
         </div>
       </div>
-      <div className="flex gap-5 cursor-pointer">
+      <div className="flex gap-5 cursor-pointer" onClick={handlerLogout}>
         <div className="w-7 h-7">
-          <Image src={logout} alt="logout" />
+          <Image src={iconLogout} alt="logout" />
         </div>
         <p className="text-font-primary-blurs text-lg">Logout</p>
       </div>

@@ -39,7 +39,7 @@ function Dashboard() {
             <div className="flex flex-col gap-6">
               <p className="text-font-secondary-blur">Balance</p>
               <p className="text-4xl text-white">
-                Rp.{" "}
+                Rp.
                 {(userStore.data.balance &&
                   userStore.data.balance.toLocaleString("id-ID")) ||
                   0}
