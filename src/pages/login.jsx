@@ -30,6 +30,7 @@ function Login() {
     const { name, value } = e.target;
     if (value) {
       setInput(true);
+      setInvalid(false);
     } else {
       setInput(false);
       setInvalid(false);
@@ -44,8 +45,15 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (form.email === "" || form.password === "") {
         setMsg("Input is required!");
+        setInvalid(true);
+        setLoading(false);
+        return;
+      }
+      if (!emailRegex.test(form.email)) {
+        setMsg("Email is invalid!");
         setInvalid(true);
         setLoading(false);
         return;

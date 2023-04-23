@@ -31,3 +31,13 @@ export const changePin = (userId, token, pin, controller) => {
     }
   );
 };
+
+export const forgotPassword = (body, controller) => {
+  const url = `${baseUrl}auth/forgot-password`;
+  return axios.post(url, body, { signal: controller.signal });
+};
+
+export const resetPassword = (body, controller) => {
+  const url = `${baseUrl}auth/reset-password`;
+  return axios.patch(url, body, { signal: controller.signal });
+};

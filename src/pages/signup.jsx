@@ -27,6 +27,7 @@ function Signup() {
     const { name, value } = e.target;
     if (value) {
       setInput(true);
+      setInvalid(false);
     } else {
       setInput(false);
     }
