@@ -12,8 +12,9 @@ import img4 from "../assets/airbnb.svg";
 import img5 from "../assets/canon.svg";
 import img6 from "../assets/dell.svg";
 import img7 from "../assets/peopel.png";
+import PublicRoute from "@/utils/wrapper/publicRoute";
 
-export default function Home() {
+function Home() {
   return (
     <Title title={"Home"}>
       <Header />
@@ -223,3 +224,5 @@ export default function Home() {
     </Title>
   );
 }
+
+export default PublicRoute(Home);

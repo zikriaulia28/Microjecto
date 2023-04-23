@@ -107,15 +107,15 @@ function ChangePassword() {
       <Header />
       <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
         <Aside />
-        <section className="flex flex-col p-8 w-[53.125rem] h-[42.375rem] bg-white rounded-xl shadow-lg">
+        <section className="flex flex-col p-6 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg">
           <h1 className="font-bold text-lg">Change Password</h1>
           <p className="w-[21.375rem] text-font-primary-blur mt-6">
             You must enter your current password and then type your new password
             twice.
           </p>
-          <div className="px-52">
+          <div className="w-full px-4 lg:px-52">
             <form className="mt-16">
-              <div>
+              <div className="">
                 <span className="relative">
                   <i
                     className={`bi bi-lock-fill text-2xl absolute -top-2 ${

@@ -10,7 +10,7 @@ function PublicRoute(WrappedComponent) {
 
     useEffect(() => {
       if (isToken) {
-        router.push("/home");
+        router.push("/dashboard");
       }
     }, [isToken, router]);
 

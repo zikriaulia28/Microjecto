@@ -57,6 +57,44 @@ const userSlice = createSlice({
         },
       };
     },
+    editNameUser: (prevState, action) => {
+      return {
+        ...prevState,
+        data: {
+          ...prevState.data,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+        },
+      };
+    },
+    editPhoneUser: (prevState, action) => {
+      return {
+        ...prevState,
+        data: {
+          ...prevState.data,
+          phone: action.payload,
+        },
+      };
+    },
+    editImage: (prevState, action) => {
+      console.log(action.payload);
+      return {
+        ...prevState,
+        data: {
+          ...prevState.data,
+          image: action.payload,
+        },
+      };
+    },
+    editBalanceRedux: (prevState, action) => {
+      return {
+        ...prevState,
+        data: {
+          ...prevState.data,
+          balance: action.payload,
+        },
+      };
+    },
     logoutRedux: (prevState) => {
       return {
         ...prevState,

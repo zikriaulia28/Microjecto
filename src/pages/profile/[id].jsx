@@ -13,6 +13,7 @@ import Image from "next/image";
 import Spinner from "@/components/spinner";
 import { userAction } from "@/redux/slices/auth";
 import { useDispatch } from "react-redux";
+import PrivateRoute from "@/utils/wrapper/privateRoute";
 
 function Profile() {
   const router = useRouter();
@@ -26,28 +27,43 @@ function Profile() {
   const userStore = useSelector((state) => state.user);
   const token = userStore.token;
   const userId = userStore.data.id;
+  const dataImage = userStore.data.image;
+
+  const imgUrl =
+    "https://res.cloudinary.com/dd1uwz8eu/image/upload/v1666604839/" +
+    dataImage;
 
   const onChangeFile = (event) => {
     setimage(event.target.files[0]);
-    if (image) {
-      setSave(true);
-    } else {
-      setSave(false);
+    if (event) {
+      setSave((prevState) => !prevState);
     }
   };
 
+  // console.log(image);
   const handlerSave = async (event) => {
-    setIsLoading(true);
     event.preventDefault();
+    setIsLoading(true);
     try {
-      const result = await editImage(token, userId, image, controller);
-      console.log(result.data.data);
-      if (result.status === 200) {
-        setSave(false);
+      if (!image) {
+        console.log("Please select an image to upload");
+        setIsLoading(false);
+        return;
       }
+      const result = await editImage(token, userId, image, controller);
+      console.log(result);
+      if (result.status === 200) {
+        setIsLoading(false);
+      }
+      setSave(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setSave(false);
       if (error.response.status === 400) {
+        console.log(error.response.data.msg);
+      }
+      if (error.response.status === 413) {
         console.log(error.response.data.msg);
       }
     }
@@ -57,7 +73,9 @@ function Profile() {
     setIsLoading(true);
     try {
       const result = await getProfile(token, userId, controller);
-      // console.log(result.data.data);
+      console.log(result.data.data.image);
+      const image = result.data.data.image;
+      dispatch(userAction.editImage(image));
       setData(result.data.data);
       setIsLoading(false);
     } catch (error) {
@@ -104,7 +122,9 @@ function Profile() {
             <>
               <div className="w-20 h-20 bg-slate-400 rounded-xl">
                 <Image
-                  src={image ? URL.createObjectURL(image) : placeholder}
+                  src={
+                    image ? URL.createObjectURL(image) : imgUrl || placeholder
+                  }
                   alt="image"
                   className="w-full h-full object-cover rounded-xl"
                   width={80}
@@ -136,30 +156,30 @@ function Profile() {
               </div>
             </>
           )}
-          <div className="flex flex-col gap-5 mt-12 ">
+          <div className="flex flex-col w-4/5 gap-5 mt-12 ">
             <button
-              className="flex justify-between md:w-[26rem] bg-secondary py-4 px-5 rounded-xl"
-              onClick={() => handleNavigate("/profile/personalInfo")}
+              className="flex justify-between w-full bg-secondary py-4 px-5 rounded-xl"
+              onClick={() => handleNavigate("/profile/personal-info")}
             >
               <p className="font-bold">Personal Information</p>
               <i className="bi bi-arrow-right text-lg"></i>
             </button>
             <button
-              className="flex justify-between md:w-[26rem] bg-secondary py-4 px-5 rounded-xl"
-              onClick={() => handleNavigate("/profile/changePassword")}
+              className="flex justify-between w-full bg-secondary py-4 px-5 rounded-xl"
+              onClick={() => handleNavigate("/profile/change-password")}
             >
               <p className="font-bold">Change Password</p>
               <i className="bi bi-arrow-right text-lg"></i>
             </button>
             <button
-              className="flex justify-between md:w-[26rem] bg-secondary py-4 px-5 rounded-xl"
-              onClick={() => handleNavigate("/profile/changePin")}
+              className="flex justify-between w-full bg-secondary py-4 px-5 rounded-xl"
+              onClick={() => handleNavigate("/profile/change-pin")}
             >
               <p className="font-bold">Change PIN</p>
               <i className="bi bi-arrow-right text-lg"></i>
             </button>
             <button
-              className="flex justify-between md:w-[26rem] bg-secondary py-4 px-5 rounded-xl"
+              className="flex justify-between w-full bg-secondary py-4 px-5 rounded-xl"
               onClick={handlerLogout}
             >
               <p className="font-bold">Logout</p>
@@ -173,4 +193,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default PrivateRoute(Profile);

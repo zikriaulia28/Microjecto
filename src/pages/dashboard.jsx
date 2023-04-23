@@ -8,7 +8,7 @@ import { getDashboard } from "@/utils/https/user";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
-function Home() {
+function Dashboard() {
   const controller = useMemo(() => new AbortController(), []);
   const userStore = useSelector((state) => state.user);
   const token = userStore.token;
@@ -30,7 +30,7 @@ function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
   return (
-    <Title title="Home">
+    <Title title="Dashboard">
       <Header />
       <main className="flex gap-5 px-36 py-10 bg-secondary">
         <Aside />
@@ -189,4 +189,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;

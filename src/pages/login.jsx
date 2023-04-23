@@ -62,7 +62,7 @@ function Login() {
         if (result.pin === null) {
           router.push("/pin");
         } else {
-          router.push("/home");
+          router.push("/dashboard");
         }
         console.log(resultProfile);
         dispatch(userAction.loginRedux(result));

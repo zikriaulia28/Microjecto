@@ -3,15 +3,22 @@ import Image from "next/image";
 import notification from "../assets/header/bell.svg";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Header() {
-  const token = useSelector((state) => state.user.token);
+  const userStore = useSelector((state) => state.user);
+  const token = userStore.token;
   const router = useRouter();
-  const firstname = useSelector((state) => state.user.data.firstName);
-  const lastname = useSelector((state) => state.user.data.lastName);
+  const dataImage = userStore.data.image;
+  const firstname = userStore.data.firstName;
+  const lastname = userStore.data.lastName;
+  const phone = userStore.data.phone;
   const name = `${firstname} ${lastname}`;
   const [show, setShow] = useState(false);
+
+  const imgUrl =
+    "https://res.cloudinary.com/dd1uwz8eu/image/upload/v1666604839/" +
+    dataImage;
 
   const handleShow = () => {
     setShow((prevState) => !prevState);
@@ -20,6 +27,7 @@ function Header() {
   const handleNavigate = (to) => {
     router.push(to);
   };
+
   return (
     <>
       <nav
@@ -34,14 +42,16 @@ function Header() {
               <div className="hidden lg:flex gap-6 items-center">
                 <div className="w-12 h-12 rounded-xl">
                   <Image
-                    src={placeholder}
+                    src={imgUrl || placeholder}
                     alt="profile"
                     className="w-full h-full object-cover rounded-xl"
+                    width={50}
+                    height={50}
                   />
                 </div>
                 <div>
                   <p className="font-bold text-lg">{name}</p>
-                  <p className="text-font-primary-blur">+62 8139 3877 7946</p>
+                  <p className="text-font-primary-blur">{phone}</p>
                 </div>
                 <div className="w-6 h-6">
                   <Image src={notification} alt="notification" />
@@ -58,6 +68,8 @@ function Header() {
                         src={placeholder}
                         alt="profile"
                         className="w-full h-full object-cover rounded-xl"
+                        width={50}
+                        height={50}
                       />
                     </div>
                     <div>

@@ -10,7 +10,7 @@ function PrivateRoute(WrappedComponent) {
 
     useEffect(() => {
       if (!isToken) {
-        router.push("/login");
+        router.push("/");
       }
     }, [isToken, router]);
 

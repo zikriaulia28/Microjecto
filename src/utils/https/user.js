@@ -36,8 +36,10 @@ export const editPassword = (userId, token, oldPassword, newPassword, confirmPas
 };
 
 export const editImage = (token, userId, image, controller) => {
+  const formData = new FormData();
+  formData.append("image", image);
   const url = `${baseUrl}user/image/${userId}`;
-  return axios.patch(url, image, {
+  return axios.patch(url, formData, {
     signal: controller.signal,
     headers: { Authorization: `Bearer ${token}` },
   });
