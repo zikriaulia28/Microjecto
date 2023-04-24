@@ -1,6 +1,6 @@
 import Title from "@/components/Title";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 import Aside from "@/components/AsideMenu";
 import { logout } from "@/utils/https/auth";
 import { editImage, getProfile } from "@/utils/https/user";
