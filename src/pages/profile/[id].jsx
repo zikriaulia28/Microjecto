@@ -1,7 +1,7 @@
 import Title from "@/components/Title";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Aside from "@/components/Aside";
+import Aside from "@/components/AsideMenu";
 import { logout } from "@/utils/https/auth";
 import { editImage, getProfile } from "@/utils/https/user";
 import { useState, useMemo, useEffect } from "react";
@@ -115,7 +115,7 @@ function Profile() {
       <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
         <Aside />
 
-        <section className="flex flex-col items-center  pt-12 w-[393px] md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg  pb-10 xl:px-52">
+        <section className="flex flex-col items-center  pt-12 w-[393px] md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg  pb-10 xl:px-44">
           {isLoading ? (
             <Spinner />
           ) : (

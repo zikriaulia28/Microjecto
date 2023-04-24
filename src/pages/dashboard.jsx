@@ -2,7 +2,7 @@ import Title from "@/components/Title";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import Aside from "@/components/Aside";
+import Aside from "@/components/AsideMenu";
 import placeholder from "../assets/header/Placeholder.png";
 import { getDashboard } from "@/utils/https/user";
 import { useEffect, useMemo, useState } from "react";

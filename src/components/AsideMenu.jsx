@@ -11,7 +11,7 @@ import { useMemo } from "react";
 import { userAction } from "@/redux/slices/auth";
 import { useState, useEffect } from "react";
 
-function Aside(props) {
+function AsideMenu(props) {
   const userStore = useSelector((state) => state.user);
   // console.log(userStore);
   const token = userStore.token;
@@ -67,9 +67,9 @@ function Aside(props) {
     <aside
       className={`${
         showAside
-          ? "flex absolute z-50 transform translate-x-0 h-[43rem] top-24 left-0"
+          ? "flex absolute z-50 transform translate-x-0 h-[43rem] top-24 left-0 lg:hidden"
           : "hidden"
-      } lg:flex flex-col justify-between w-[16.875rem] xl:h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow-lg`}
+      } select-none lg:flex flex-col justify-between w-[16.875rem] xl:h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow-lg`}
     >
       <div>
         <div
@@ -117,4 +117,4 @@ function Aside(props) {
   );
 }
 
-export default Aside;
+export default AsideMenu;

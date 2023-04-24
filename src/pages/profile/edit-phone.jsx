@@ -1,14 +1,16 @@
 import Title from "@/components/Title";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Aside from "@/components/Aside";
+import Aside from "@/components/AsideMenu";
 import { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { editProfile } from "@/utils/https/user";
 import { useDispatch } from "react-redux";
 import { userAction } from "@/redux/slices/auth";
+import { useRouter } from "next/router";
 
 function EditPhone() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const controller = useMemo(() => new AbortController(), []);
   const userStore = useSelector((state) => state.user);
@@ -63,6 +65,10 @@ function EditPhone() {
     }
   };
 
+  const handleNavigate = (to) => {
+    router.push(to);
+  };
+
   return (
     <Title>
       <Header />
@@ -108,14 +114,29 @@ function EditPhone() {
               {isLoading ? (
                 <progress className="progress progress-secondary w-full"></progress>
               ) : (
-                <button
-                  onClick={editPhoneNumber}
-                  className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
-                    input ? "bg-primary text-white" : "bg-secondary"
-                  }`}
-                >
-                  Edit Phone Number
-                </button>
+                <>
+                  {isSuccess ? (
+                    <button
+                      onClick={() =>
+                        router.push(`/profile/${userStore.data.id}`)
+                      }
+                      className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
+                        input ? "bg-primary text-white" : "bg-secondary"
+                      }`}
+                    >
+                      Back
+                    </button>
+                  ) : (
+                    <button
+                      onClick={editPhoneNumber}
+                      className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
+                        input ? "bg-primary text-white" : "bg-secondary"
+                      }`}
+                    >
+                      Edit Phone Number
+                    </button>
+                  )}
+                </>
               )}
             </form>
           </div>

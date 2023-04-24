@@ -1,15 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Title from "@/components/Title";
-import Aside from "@/components/Aside";
+import Aside from "@/components/AsideMenu";
 import Image from "next/image";
 import show from "../../assets/auth/show.svg";
 import hide from "../../assets/auth/hide.svg";
 import { useState, useMemo } from "react";
 import { editPassword } from "@/utils/https/user";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 function ChangePassword() {
+  const router = useRouter();
   const controller = useMemo(() => new AbortController(), []);
   const userStore = useSelector((state) => state.user);
   const token = userStore.token;
@@ -89,6 +91,9 @@ function ChangePassword() {
         setMsg(result.data.msg);
         setSuccess(true);
         setLoading(false);
+        setOldPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
       }
     } catch (error) {
       console.log(error);
@@ -220,16 +225,27 @@ function ChangePassword() {
               {isLoading ? (
                 <progress className="progress progress-secondary w-full"></progress>
               ) : (
-                <button
-                  onClick={handlerChangePassword}
-                  className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
-                    inputOldPassword && inputNewPassword && confirmPassword
-                      ? "bg-primary text-white"
-                      : "bg-secondary"
-                  }`}
-                >
-                  Change Password
-                </button>
+                <>
+                  {isSuccess ? (
+                    <button
+                      onClick={() => router.push(`/profile/${userId}`)}
+                      className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none input bg-primary text-white`}
+                    >
+                      Back
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handlerChangePassword}
+                      className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
+                        inputOldPassword && inputNewPassword && confirmPassword
+                          ? "bg-primary text-white"
+                          : "bg-secondary"
+                      }`}
+                    >
+                      Change Password
+                    </button>
+                  )}
+                </>
               )}
             </form>
           </div>

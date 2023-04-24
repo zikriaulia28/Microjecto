@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Title from "@/components/Title";
 import { useState, useMemo } from "react";
-import Aside from "@/components/Aside";
+import Aside from "@/components/AsideMenu";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { editProfile } from "@/utils/https/user";
@@ -54,6 +54,14 @@ function PersonalInfo() {
     }
   };
 
+  const handleCancel = (e) => {
+    setForm({
+      firstName: firstName,
+      lastName: lastName,
+    });
+    setShow(false);
+  };
+
   return (
     <Title title={"Personal Info"}>
       <Header />
@@ -86,14 +94,6 @@ function PersonalInfo() {
                 className="font-bold text-2xl outline-none"
                 onChange={handleForm}
               />
-              {show && (
-                <span
-                  onClick={handleSubmit}
-                  className="text-lg cursor-pointer absolute right-4 text-primary"
-                >
-                  Save
-                </span>
-              )}
             </div>
             <div className="shadow-xl p-4 rounded-2xl">
               <p className="text-font-primary-blur text-base">
@@ -113,6 +113,24 @@ function PersonalInfo() {
                 Manage
               </p>
             </div>
+            {show && (
+              <>
+                <div className="flex justify-center gap-6">
+                  <button
+                    onClick={handleCancel}
+                    className="text-center text-lg cursor-pointer  text-primary outline rounded-xl w-24 px-4 py-2 hover:bg-primary hover:text-white"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSubmit}
+                    className="text-center text-lg cursor-pointer  text-primary outline rounded-xl w-24 px-4 py-2 hover:bg-primary hover:text-white"
+                  >
+                    Save
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </section>
       </main>
