@@ -32,6 +32,14 @@ export const changePin = (userId, token, pin, controller) => {
   );
 };
 
+export const checkPin = (token, pin, controller) => {
+  const url = `${baseUrl}user/pin/${pin}`;
+  return axios.get(url, {
+    signal: controller.signal,
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
 export const forgotPassword = (body, controller) => {
   const url = `${baseUrl}auth/forgot-password`;
   return axios.post(url, body, { signal: controller.signal });

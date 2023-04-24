@@ -87,7 +87,7 @@ function Profile() {
   useEffect(() => {
     fetchProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId]);
+  }, []);
 
   // console.log(image);
 
@@ -173,7 +173,7 @@ function Profile() {
             </button>
             <button
               className="flex justify-between w-full bg-secondary py-4 px-5 rounded-xl"
-              onClick={() => handleNavigate("/profile/change-pin")}
+              onClick={() => handleNavigate("/profile/check-pin")}
             >
               <p className="font-bold">Change PIN</p>
               <i className="bi bi-arrow-right text-lg"></i>

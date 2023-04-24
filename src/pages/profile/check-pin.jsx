@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Title from "@/components/Title";
 import Aside from "@/components/AsideMenu";
 import { useRef, useState, useMemo } from "react";
-import { changePin } from "@/utils/https/auth";
+import { checkPin } from "@/utils/https/auth";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
@@ -11,11 +11,8 @@ function ChangePin() {
   const router = useRouter();
   const controller = useMemo(() => new AbortController(), []);
   const token = useSelector((state) => state.user.token);
-  const userId = useSelector((state) => state.user.data.id);
-
   const [isLoading, setLoading] = useState(false);
   const [isInvalid, setInvalid] = useState(false);
-  const [isSuccess, setSuccess] = useState(false);
   const [msg, setMsg] = useState("");
   const [input, setInput] = useState(false);
   const [pin, setPin] = useState("");
@@ -26,11 +23,10 @@ function ChangePin() {
   const input5Ref = useRef(null);
   const input6Ref = useRef(null);
 
-  const handleConfirm = async (event) => {
-    event.preventDefault();
+  const handleCheck = async () => {
     setLoading(true);
     try {
-      const result = await changePin(userId, token, pin, controller);
+      const result = await checkPin(token, pin, controller);
       console.log(result);
       if (result.status && result.status === 200) {
         setLoading(false);
@@ -41,15 +37,15 @@ function ChangePin() {
         input5Ref.current.value = "";
         input6Ref.current.value = "";
         setInput(false);
-        setSuccess(true);
         setMsg(result.data.msg);
+        router.push(`/profile/change-pin`);
       }
     } catch (error) {
       console.log(error);
-      if (error.response && error.response.status === 400) {
-        setInvalid(true);
+      if (error.response.status && error.response.status === 400) {
         setMsg(error.response.data.msg);
         setLoading(false);
+        setInvalid(true);
       }
     }
   };
@@ -59,7 +55,6 @@ function ChangePin() {
       if (inputRef.current) {
         inputRef.current.focus();
         setInvalid(false);
-        setSuccess(false);
       }
       setInput(true);
     } else {
@@ -92,7 +87,8 @@ function ChangePin() {
         <section className="flex flex-col p-6 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg">
           <h1 className="font-bold text-lg">Change PIN</h1>
           <p className="w-[21.375rem] text-font-primary-blur mt-6">
-            Type your new 6 digits security PIN to use in Fazzpay.
+            Enter your current 6 digits Fazzpay PIN below to continue to the
+            next steps.
           </p>
           <div className="xl:px-52">
             <form className="mt-24">
@@ -168,33 +164,20 @@ function ChangePin() {
               <p className="w-full text-center my-5 text-font-error font-semibold">
                 {isInvalid && msg}
               </p>
-              <p className="w-full text-center my-5 text-green-500 font-semibold">
-                {isSuccess && msg}
-              </p>
               {isLoading ? (
                 <progress className="progress progress-secondary w-full"></progress>
               ) : (
                 <>
-                  {isSuccess ? (
-                    <button
-                      onClick={() => router.push(`/profile/${userId}`)}
-                      className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none input bg-primary text-white`}
-                    >
-                      Back
-                    </button>
-                  ) : (
-                    <button
-                      id="confirm-btn"
-                      type="submit"
-                      onClick={handleConfirm}
-                      disabled={isInvalid || pin === ""}
-                      className={`mt-16 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
-                        input ? "bg-primary text-white" : "bg-secondary"
-                      }`}
-                    >
-                      Change Pin
-                    </button>
-                  )}
+                  <button
+                    type="submit"
+                    onClick={handleCheck}
+                    disabled={isInvalid || pin === ""}
+                    className={`mt-16 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
+                      input ? "bg-primary text-white" : "bg-secondary"
+                    }`}
+                  >
+                    Continue
+                  </button>
                 </>
               )}
             </form>
