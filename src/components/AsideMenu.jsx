@@ -48,9 +48,10 @@ function AsideMenu(props) {
 
     function handleSwipe() {
       if (endX - startX > 50) {
-        setShowAside(false);
-      } else if (startX - endX > 50) {
-        setShowAside(true);
+        setShowAside((prevState) => !prevState);
+      }
+      if (startX - endX > 100) {
+        setShowAside((prevState) => !prevState);
       }
     }
 

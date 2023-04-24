@@ -7,6 +7,9 @@ import placeholder from "../assets/header/Placeholder.png";
 import { getDashboard } from "@/utils/https/user";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import HistoryDashboard from "@/components/Pages/HistoryDashboard";
+import DashbordDiagram from "@/components/Pages/DashboardDiagram";
+// import * as te from "tw-elements";
 
 function Dashboard() {
   const controller = useMemo(() => new AbortController(), []);
@@ -32,10 +35,10 @@ function Dashboard() {
   return (
     <Title title="Dashboard">
       <Header />
-      <main className="flex gap-5 px-36 py-10 bg-secondary">
+      <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary">
         <Aside />
         <section className="flex flex-col gap-5">
-          <div className="flex justify-between bg-primary rounded-lg shadow-xl p-8 w-[48.5rem]">
+          <div className="flex justify-between bg-primary rounded-lg shadow-xl p-8 w-full xl:w-[48.5rem]">
             <div className="flex flex-col gap-6">
               <p className="text-font-secondary-blur">Balance</p>
               <p className="text-4xl text-white">
@@ -60,8 +63,8 @@ function Dashboard() {
             </div>
           </div>
           <div className="flex gap-5">
-            <div className="bg-white w-[25rem] h-[28.4rem] rounded-xl shadow-lg p-8">
-              <div className="flex justify-between">
+            <div className="hidden lg:block bg-white xl:w-[25rem] xl:h-[28.4rem] rounded-xl shadow-lg p-8">
+              {/* <div className="flex justify-between">
                 <div>
                   <i className="bi bi-arrow-down text-xl text-green-600 mr-2"></i>
                   <p>Income</p>
@@ -72,114 +75,19 @@ function Dashboard() {
                   <p>Expense</p>
                   <p>Rp2.120.000</p>
                 </div>
-              </div>
+              </div> */}
+              <DashbordDiagram
+                userId={userId}
+                token={token}
+                controller={controller}
+              />
             </div>
-            <div className="flex flex-col gap-10 bg-white w-[22rem] h-[28.4rem] rounded-xl shadow-lg p-8 overflow-y-auto ">
-              <h2>Transaction History</h2>
-              <div className="flex justify-between items-center">
-                <div className="flex gap-4">
-                  <div className="w-14 h-14">
-                    <Image
-                      src={placeholder}
-                      alt="placeholder"
-                      className="w-full h-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div>
-                    <p>Samuel Suhi</p>
-                    <p className="text-sm text-font-primary-blur mt-2">
-                      Accept
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[#1EC15F]">+Rp50.000</p>
-                </div>
+            <div className="flex flex-col gap-10 bg-white w-full xl:w-[22rem] h-[28.4rem] rounded-xl shadow-lg p-8">
+              <div className="flex justify-between">
+                <h2>Transaction History</h2>
+                <p>See All</p>
               </div>
-
-              <div className="flex justify-between items-center">
-                <div className="flex gap-4">
-                  <div className="w-14 h-14">
-                    <Image
-                      src={placeholder}
-                      alt="placeholder"
-                      className="w-full h-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div>
-                    <p>Samuel Suhi</p>
-                    <p className="text-sm text-font-primary-blur mt-2">
-                      Accept
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[#1EC15F]">+Rp50.000</p>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <div className="flex gap-4">
-                  <div className="w-14 h-14">
-                    <Image
-                      src={placeholder}
-                      alt="placeholder"
-                      className="w-full h-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div>
-                    <p>Samuel Suhi</p>
-                    <p className="text-sm text-font-primary-blur mt-2">
-                      Accept
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[#1EC15F]">+Rp50.000</p>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <div className="flex gap-4">
-                  <div className="w-14 h-14">
-                    <Image
-                      src={placeholder}
-                      alt="placeholder"
-                      className="w-full h-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div>
-                    <p>Samuel Suhi</p>
-                    <p className="text-sm text-font-primary-blur mt-2">
-                      Accept
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[#1EC15F]">+Rp50.000</p>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <div className="flex gap-4">
-                  <div className="w-14 h-14">
-                    <Image
-                      src={placeholder}
-                      alt="placeholder"
-                      className="w-full h-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div>
-                    <p>Samuel Suhi</p>
-                    <p className="text-sm text-font-primary-blur mt-2">
-                      Accept
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[#1EC15F]">+Rp50.000</p>
-                </div>
-              </div>
+              <HistoryDashboard token={token} controller={controller} />
             </div>
           </div>
         </section>
