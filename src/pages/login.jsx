@@ -1,4 +1,4 @@
-import Title from "@/components/title";
+import Title from "@/components/Title";
 import Image from "next/image";
 import show from "../assets/auth/show.svg";
 import hide from "../assets/auth/hide.svg";

@@ -9,15 +9,20 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { useMemo } from "react";
 import { userAction } from "@/redux/slices/auth";
+import { useState, useEffect } from "react";
 
 function Aside(props) {
   const userStore = useSelector((state) => state.user);
-  console.log(userStore);
+  // console.log(userStore);
   const token = userStore.token;
   const router = useRouter();
   const controller = useMemo(() => new AbortController(), []);
   const dispatch = useDispatch();
+  const [showAside, setShowAside] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [endX, setEndX] = useState(0);
 
+  console.log(showAside);
   const handlerLogout = async () => {
     try {
       const result = await logout(token, controller);
@@ -30,8 +35,42 @@ function Aside(props) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    function handleTouchStart(event) {
+      setStartX(event.touches[0].clientX);
+    }
+
+    function handleTouchEnd(event) {
+      setEndX(event.changedTouches[0].clientX);
+      handleSwipe();
+    }
+
+    function handleSwipe() {
+      if (endX - startX > 50) {
+        setShowAside(false);
+      } else if (startX - endX > 50) {
+        setShowAside(true);
+      }
+    }
+
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [endX, startX]);
+
   return (
-    <aside className="hidden lg:flex flex-col justify-between w-[16.875rem] h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow-lg">
+    <aside
+      className={`${
+        showAside
+          ? "flex absolute z-50 transform translate-x-0 h-[43rem] top-24 left-0"
+          : "hidden"
+      } lg:flex flex-col justify-between w-[16.875rem] xl:h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow-lg`}
+    >
       <div>
         <div
           className="flex gap-5 cursor-pointer relative"

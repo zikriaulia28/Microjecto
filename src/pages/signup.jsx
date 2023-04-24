@@ -1,4 +1,4 @@
-import Title from "@/components/title";
+import Title from "@/components/Title";
 import AsideAuth from "@/components/AsideAuth";
 import Image from "next/image";
 import show from "../assets/auth/show.svg";

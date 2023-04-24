@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Title from "@/components/title";
+import Title from "@/components/Title";
 import Aside from "@/components/Aside";
 import { useRef, useState, useMemo } from "react";
 import { changePin } from "@/utils/https/auth";

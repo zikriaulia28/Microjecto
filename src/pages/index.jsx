@@ -2,7 +2,7 @@ import Image from "next/image";
 import imgPhone from "../assets/img-landing.png";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Title from "@/components/title";
+import Title from "@/components/Title";
 import playstore from "../assets/playstore.svg";
 import appstore from "../assets/appstore.svg";
 import img1 from "../assets/microsoft.svg";

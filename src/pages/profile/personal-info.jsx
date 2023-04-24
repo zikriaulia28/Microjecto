@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Title from "@/components/title";
+import Title from "@/components/Title";
 import { useState, useMemo } from "react";
 import Aside from "@/components/Aside";
 import { useRouter } from "next/router";

@@ -1,4 +1,4 @@
-import Title from "@/components/title";
+import Title from "@/components/Title";
 import AsideAuth from "@/components/AsideAuth";
 import { useState, useMemo } from "react";
 import PublicRoute from "@/utils/wrapper/publicRoute";
