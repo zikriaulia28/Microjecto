@@ -70,7 +70,7 @@ function AsideMenu(props) {
         showAside
           ? "flex absolute z-50 transform translate-x-0 h-[43rem] top-24 left-0 lg:hidden"
           : "hidden"
-      } select-none lg:flex flex-col justify-between w-[16.875rem] xl:h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow`}
+      } select-none lg:flex flex-col justify-between w-[16.875rem] xl:h-[42.3rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow`}
     >
       <div>
         <div

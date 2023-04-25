@@ -33,13 +33,13 @@ function Dashboard() {
   return (
     <Title title="Dashboard">
       <Header />
-      <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary">
+      <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary">
         <Aside namePage="dashboard" />
-        <section className="flex flex-col gap-5">
-          <div className="flex justify-between bg-primary rounded-lg shadow-xl p-8 w-full xl:w-[48.5rem]">
+        <section className="flex flex-col gap-5 w-full h-full">
+          <div className="flex justify-between bg-primary rounded-lg shadow-xl p-8 w-full xl:w-full">
             <div className="flex flex-col gap-6">
               <p className="text-font-secondary-blur">Balance</p>
-              <p className="text-4xl text-white">
+              <p className="text-xl font-bold md:text-4xl text-white">
                 Rp.
                 {(userStore.data.balance &&
                   userStore.data.balance.toLocaleString("id-ID")) ||
@@ -61,7 +61,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="flex gap-5">
-            <div className="hidden lg:block bg-white xl:w-[25rem] xl:h-[28.4rem] rounded-xl shadow p-8">
+            <div className="hidden lg:block bg-white xl:w-[60%] xl:h-[28.2rem] rounded-xl shadow p-8">
               {/* <div className="flex justify-between">
                 <div>
                   <i className="bi bi-arrow-down text-xl text-green-600 mr-2"></i>
@@ -80,7 +80,7 @@ function Dashboard() {
                 controller={controller}
               />
             </div>
-            <div className="flex flex-col gap-10 bg-white w-full xl:w-[22rem] h-[28.4rem] rounded-xl shadow p-8">
+            <div className="flex flex-col gap-10 bg-white w-full xl:w-[40%] h-[28.2rem] rounded-xl shadow p-8">
               <div className="flex justify-between">
                 <h2>Transaction History</h2>
                 <p>See All</p>

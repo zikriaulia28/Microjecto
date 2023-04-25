@@ -72,15 +72,15 @@ function EditPhone() {
   return (
     <Title>
       <Header />
-      <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
+      <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary font-nunitosans">
         <Aside namePage="profile" />
-        <section className="flex flex-col p-8 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow">
+        <section className="flex flex-col px-4 py-5 w-full md:w-[736px] xl:w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
           <h1 className="font-bold text-lg">Edit Phone Number</h1>
-          <p className="w-[21.375rem] text-font-primary-blur mt-6">
+          <p className="w-[20rem] md:w-[21.375rem] text-font-primary-blur mt-6">
             Add at least one phone number for the transfer ID so you can start
             transfering your money to another user.
           </p>
-          <div className="xl:px-52">
+          <div className="md:px-32 xl:px-52">
             <form className="mt-32">
               <div>
                 <span className="relative">

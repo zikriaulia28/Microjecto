@@ -87,16 +87,16 @@ function ChangePin() {
   return (
     <Title title={"Change Pin"}>
       <Header />
-      <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
+      <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary font-nunitosans">
         <Aside namePage="profile" />
-        <section className="flex flex-col p-6 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow">
+        <section className="flex flex-col p-6 md:w-[736px] xl:w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
           <h1 className="font-bold text-lg">Change PIN</h1>
           <p className="w-[21.375rem] text-font-primary-blur mt-6">
             Type your new 6 digits security PIN to use in Fazzpay.
           </p>
-          <div className="xl:px-52">
+          <div className="md:px-32 xl:px-52">
             <form className="mt-24">
-              <div className="flex gap-4">
+              <div className="flex justify-between">
                 <input
                   ref={input1Ref}
                   type="text"
