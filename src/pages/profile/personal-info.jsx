@@ -77,9 +77,9 @@ function PersonalInfo() {
       <Header />
       <main className="flex gap-5 px-4 xl:px-20 py-10 w-full bg-secondary font-nunitosans select-none">
         <Aside namePage="profile" />
-        <section className="flex flex-col p-6 md:w-[736px] xl:w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
+        <section className="flex flex-col p-6 w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
           <h1 className="font-bold text-lg">Personal Information</h1>
-          <p className="w-[21.375rem] text-font-primary-blur mt-6">
+          <p className="md:w-[21.375rem] text-font-primary-blur mt-6">
             We got your personal information from the sign up proccess. If you
             want to make changes on your information, contact our support.
           </p>

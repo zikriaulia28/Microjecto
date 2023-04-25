@@ -40,7 +40,7 @@ function MobileSideBar(props) {
     <>
       <TopUp isOpen={openTopup} onClose={() => setOpenTopup(false)} />
       <aside
-        className={`absolute h-screen z-50 left-0 top-0 lg:hidden select-none flex flex-col justify-between w-[16.875rem] xl:h-[42.3rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow transition-all ease-in-out`}
+        className={`absolute h-screen z-40 left-0 top-0 lg:hidden select-none flex flex-col justify-between w-[16.875rem] xl:h-[42.3rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow transition-all ease-in-out`}
       >
         <div>
           <div

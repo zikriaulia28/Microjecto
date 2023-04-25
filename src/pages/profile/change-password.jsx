@@ -112,9 +112,9 @@ function ChangePassword() {
       <Header />
       <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary font-nunitosans">
         <Aside namePage="profile" />
-        <section className="flex flex-col p-6 md:w-[736px] xl:w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
+        <section className="flex flex-col p-6 w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
           <h1 className="font-bold text-lg">Change Password</h1>
-          <p className="w-[21.375rem] text-font-primary-blur mt-6">
+          <p className="md:w-[21.375rem] text-font-primary-blur mt-6">
             You must enter your current password and then type your new password
             twice.
           </p>

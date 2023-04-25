@@ -74,9 +74,9 @@ function EditPhone() {
       <Header />
       <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary font-nunitosans">
         <Aside namePage="profile" />
-        <section className="flex flex-col px-4 py-5 w-full md:w-[736px] xl:w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
+        <section className="flex flex-col px-4 py-5 w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
           <h1 className="font-bold text-lg">Edit Phone Number</h1>
-          <p className="w-[20rem] md:w-[21.375rem] text-font-primary-blur mt-6">
+          <p className=" md:w-[21.375rem] text-font-primary-blur mt-6">
             Add at least one phone number for the transfer ID so you can start
             transfering your money to another user.
           </p>

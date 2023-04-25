@@ -75,7 +75,7 @@ function Transfer() {
       <Header />
       <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary font-nunitosans">
         <Aside namePage="transfer" />
-        <section className="flex flex-col p-6 md:w-[736px] xl:w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
+        <section className="flex flex-col p-6 w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
           <div className="w-full flex justify-between">
             <h1 className="text-lg font-bold">Search Receiver</h1>
             <div className="dropdown dropdown-end max-w-[46%]">

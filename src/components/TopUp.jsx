@@ -1,8 +1,10 @@
 import { postTopup } from "@/utils/https/history";
+import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 function TopUp({ isOpen, onClose }) {
+  const router = useRouter();
   const controller = useMemo(() => new AbortController(), []);
   const userState = useSelector((state) => state.user);
   const token = userState.token;
@@ -74,7 +76,10 @@ function TopUp({ isOpen, onClose }) {
               </p>
               {canClose ? (
                 <button
-                  onClick={() => onClose()}
+                  onClick={() => {
+                    onClose();
+                    location.reload();
+                  }}
                   className="py-4 border border-primary hover:text-white hover:bg-primary rounded-xl"
                 >
                   Close

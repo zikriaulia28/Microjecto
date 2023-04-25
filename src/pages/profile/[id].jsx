@@ -115,7 +115,7 @@ function Profile() {
       <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary font-nunitosans">
         <Aside namePage="profile" />
 
-        <section className="flex flex-col items-center  pt-12 w-[393px] md:w-[736px] xl:w-full xl:h-[42.375rem] bg-white rounded-xl shadow  pb-10 xl:px-44">
+        <section className="flex flex-col items-center  pt-12 w-full xl:h-[42.375rem] bg-white rounded-xl shadow  pb-10 xl:px-44">
           {isLoading ? (
             <Loader />
           ) : (

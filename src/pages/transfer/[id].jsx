@@ -67,7 +67,7 @@ function TransferId() {
       <Header />
       <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary font-nunitosans select-none">
         <Aside namePage="transfer" />
-        <section className="flex flex-col p-6 md:w-[736px] xl:w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
+        <section className="flex flex-col p-6 w-full xl:h-[42.375rem] bg-white rounded-xl shadow">
           <div className="flex-1 flex flex-col items-center rounded-3xl bg-white py-7">
             {isLoading ? (
               <Loader />
