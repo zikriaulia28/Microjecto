@@ -2,7 +2,6 @@ import Title from "@/components/Title";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Aside from "@/components/SideBar";
-import { logout } from "@/utils/https/auth";
 import { editImage, getProfile } from "@/utils/https/user";
 import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -13,16 +12,17 @@ import Loader from "@/components/Loader";
 import { userAction } from "@/redux/slices/auth";
 import { useDispatch } from "react-redux";
 import PrivateRoute from "@/utils/wrapper/privateRoute";
+import Logout from "@/components/LogoutModal";
 
 function Profile() {
   const router = useRouter();
   const controller = useMemo(() => new AbortController(), []);
   const dispatch = useDispatch();
-  const [modal, setModal] = useState(false);
   const [image, setimage] = useState();
   const [save, setSave] = useState(false);
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
   const userStore = useSelector((state) => state.user);
   const token = userStore.token;
   const userId = userStore.data.id;
@@ -88,21 +88,6 @@ function Profile() {
     fetchProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // console.log(image);
-
-  const handlerLogout = async () => {
-    try {
-      const result = await logout(token, controller);
-      console.log(result);
-      if (result.status === 200) {
-        dispatch(userAction.logoutRedux());
-        router.push("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleNavigate = (to) => {
     router.push(to);
@@ -182,11 +167,15 @@ function Profile() {
             </button>
             <button
               className="flex justify-between w-full bg-secondary py-4 px-5 rounded-xl"
-              onClick={handlerLogout}
+              onClick={() => setIsLogout(true)}
             >
               <p className="font-bold">Logout</p>
             </button>
           </div>
+          <Logout
+            logoutOpen={isLogout}
+            logoutClose={() => setIsLogout(false)}
+          />
         </section>
       </main>
       <Footer />

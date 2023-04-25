@@ -1,44 +1,24 @@
-import Image from "next/image";
-import { logout } from "@/utils/https/auth";
 import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
-import { useMemo } from "react";
-import { userAction } from "@/redux/slices/auth";
-import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { toggleAction } from "@/redux/slices/action";
 import TopUp from "./TopUp";
+import Logout from "./LogoutModal";
 
 function AsideMenu(props) {
   const userStore = useSelector((state) => state.user);
-  // console.log(userStore);
-  const token = userStore.token;
   const router = useRouter();
-  const controller = useMemo(() => new AbortController(), []);
   const dispatch = useDispatch();
-  const [showAside, setShowAside] = useState(false);
-  const [openTopup, setOpenTopup] = useState(false);
+  const [isTopup, setIsTopup] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
 
   const handleToggleClose = () => {
     dispatch(toggleAction.resetToggle());
   };
 
-  console.log(showAside);
-  const handlerLogout = async () => {
-    try {
-      const result = await logout(token, controller);
-      console.log(result);
-      if (result.status === 200) {
-        dispatch(userAction.logoutRedux());
-        router.push("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <>
-      <TopUp isOpen={openTopup} onClose={() => setOpenTopup(false)} />
+      <TopUp isOpen={isTopup} onClose={() => setIsTopup(false)} />
       <aside
         className={`hidden select-none lg:flex flex-col justify-between w-[16.875rem] xl:h-[42.3rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow`}
       >
@@ -110,12 +90,25 @@ function AsideMenu(props) {
             </div>
           </div>
         </div>
-        <div className="flex gap-5 cursor-pointer" onClick={handlerLogout}>
+        <div
+          className="flex gap-5 cursor-pointer"
+          onClick={() => {
+            handleToggleClose();
+            setIsLogout(true);
+          }}
+        >
           <div className="flex gap-4 text-lg text-font-primary-blurs hover:text-primary">
             <i className="bi bi-box-arrow-right text-2xl"></i> Logout
           </div>
         </div>
       </aside>
+      <Logout
+        logoutOpen={isLogout}
+        logoutClose={() => {
+          handleToggleClose;
+          setIsLogout(false);
+        }}
+      />
     </>
   );
 }

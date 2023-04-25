@@ -4,9 +4,10 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { useMemo } from "react";
 import { userAction } from "@/redux/slices/auth";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toggleAction } from "@/redux/slices/action";
 import TopUp from "./TopUp";
+import Logout from "./LogoutModal";
 
 function MobileSideBar(props) {
   const userStore = useSelector((state) => state.user);
@@ -17,6 +18,7 @@ function MobileSideBar(props) {
   const dispatch = useDispatch();
   const [showAside, setShowAside] = useState(false);
   const [openTopup, setOpenTopup] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
 
   const handleToggleClose = () => {
     dispatch(toggleAction.resetToggle());
@@ -110,12 +112,25 @@ function MobileSideBar(props) {
             </div>
           </div>
         </div>
-        <div className="flex gap-5 cursor-pointer" onClick={handlerLogout}>
+        <div
+          className="flex gap-5 cursor-pointer"
+          onClick={() => {
+            handleToggleClose();
+            setIsLogout(true);
+          }}
+        >
           <div className="flex gap-4 text-lg text-font-primary-blurs hover:text-primary">
             <i className="bi bi-box-arrow-right text-2xl"></i> Logout
           </div>
         </div>
       </aside>
+      <Logout
+        logoutOpen={isLogout}
+        logoutClose={() => {
+          handleToggleClose;
+          setIsLogout(false);
+        }}
+      />
     </>
   );
 }
