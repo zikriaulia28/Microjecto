@@ -111,41 +111,46 @@ function Header() {
             </>
           ) : (
             <>
-              <div className="hidden lg:flex gap-8">
-                <button
-                  className="border border-primary text-primary py-3 px-9 rounded-xl hover:scale-105"
-                  onClick={() => handleNavigate("/login")}
-                >
-                  Login
-                </button>
-                <button
-                  className="bg-primary text-white py-3 px-9 rounded-xl hover:scale-105 hover:bg-blue-400"
-                  onClick={() => handleNavigate("/signup")}
-                >
-                  Sign Up
-                </button>
+              <div className="flex justify-between">
+                <h1 className="font-bold text-3xl text-primary text-center">
+                  FazzPay
+                </h1>
+                <div className="hidden lg:flex gap-8">
+                  <button
+                    className="border border-primary text-primary py-3 px-9 rounded-xl hover:scale-105"
+                    onClick={() => handleNavigate("/login")}
+                  >
+                    Login
+                  </button>
+                  <button
+                    className="bg-primary text-white py-3 px-9 rounded-xl hover:scale-105 hover:bg-blue-400"
+                    onClick={() => handleNavigate("/signup")}
+                  >
+                    Sign Up
+                  </button>
+                </div>
+                <div className="lg:hidden" onClick={handleShow}>
+                  <i className="bi bi-list text-4xl"></i>
+                </div>
+                {show && (
+                  <>
+                    <div className="bg-white absolute right-0 z-50 lg:hidden top-20 w-full px-4 py-6 rounded-xl flex flex-col gap-4 transition-all">
+                      <button
+                        className="border border-primary text-primary py-3 px-9 rounded-xl hover:scale-105"
+                        onClick={() => handleNavigate("/login")}
+                      >
+                        Login
+                      </button>
+                      <button
+                        className="bg-primary text-white py-3 px-9 rounded-xl hover:scale-105 hover:bg-blue-400"
+                        onClick={() => handleNavigate("/signup")}
+                      >
+                        Sign Up
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
-              <div className="lg:hidden" onClick={handleShow}>
-                <i className="bi bi-list text-4xl"></i>
-              </div>
-              {show && (
-                <>
-                  <div className="bg-white absolute right-0 z-50 lg:hidden top-20 w-full px-4 py-6 rounded-xl flex flex-col gap-4 transition-all">
-                    <button
-                      className="border border-primary text-primary py-3 px-9 rounded-xl hover:scale-105"
-                      onClick={() => handleNavigate("/login")}
-                    >
-                      Login
-                    </button>
-                    <button
-                      className="bg-primary text-white py-3 px-9 rounded-xl hover:scale-105 hover:bg-blue-400"
-                      onClick={() => handleNavigate("/signup")}
-                    >
-                      Sign Up
-                    </button>
-                  </div>
-                </>
-              )}
             </>
           )}
         </div>
