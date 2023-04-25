@@ -89,13 +89,16 @@ function AsideMenu(props) {
           </div>
         </div>
 
-        <div className="flex gap-5 cursor-pointer mt-12 relative">
-          {props.namePage === "topup" && (
+        <div
+          className="flex gap-5 cursor-pointer mt-12 relative"
+          onClick={() => router.push("/transfer")}
+        >
+          {props.namePage === "transfer" && (
             <div className="border border-l-4 border-l-primary h-full absolute -left-9"></div>
           )}
           <div
             className={`flex gap-4 text-lg text-font-primary-blurs ${
-              props.namePage === "topup" && "text-primary"
+              props.namePage === "transfer" && "text-primary"
             }`}
           >
             <i className="bi bi-arrow-up text-2xl"></i>Transfer

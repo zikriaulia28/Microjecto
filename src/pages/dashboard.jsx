@@ -2,25 +2,26 @@ import Title from "@/components/Title";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Aside from "@/components/SideBar";
-import { getDashboard } from "@/utils/https/user";
-import { useEffect, useMemo, useState } from "react";
+import { getProfile } from "@/utils/https/user";
+import { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import HistoryDashboard from "@/components/Pages/HistoryDashboard";
 import DashbordDiagram from "@/components/Pages/DashboardDiagram";
-// import * as te from "tw-elements";
+import { useDispatch } from "react-redux";
+import { userAction } from "@/redux/slices/auth";
 
 function Dashboard() {
+  const dispatch = useDispatch();
   const controller = useMemo(() => new AbortController(), []);
   const userStore = useSelector((state) => state.user);
   const token = userStore.token;
   const userId = userStore.data.id;
-  const [dataDashboard, setDataDashboard] = useState({});
 
   const fetching = async () => {
     try {
-      const result = await getDashboard(token, userId, controller);
-      console.log(result.data.data);
-      setDataDashboard(result.data.data);
+      const result = await getProfile(token, userId, controller);
+      const balance = result.data.data.balance;
+      dispatch(userAction.editBalanceRedux(balance));
     } catch (error) {
       console.log(error);
     }
