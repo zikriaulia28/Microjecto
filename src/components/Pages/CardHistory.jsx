@@ -41,9 +41,9 @@ function CardHistory(props) {
           </div>
         </span>
       </div>
-      <div className="flex flex-col w-full md:w-fit ml-auto pr-5">
+      <div className="flex justify-between mt-4 md:mt-0 items-center md:items-end  md:flex-col  w-full md:w-fit ml-auto pr-5">
         <p
-          className={`text-2xl md:text-lg ${
+          className={`text-lg md:text-lg ${
             props.type === "accept" || props.type === "topup"
               ? "text-green-500"
               : "text-red-500"

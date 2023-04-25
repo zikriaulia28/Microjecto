@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { toggleAction } from "@/redux/slices/action";
 import TopUp from "./TopUp";
 
-function AsideMenu(props) {
+function MobileSideBar(props) {
   const userStore = useSelector((state) => state.user);
   // console.log(userStore);
   const token = userStore.token;
@@ -40,7 +40,7 @@ function AsideMenu(props) {
     <>
       <TopUp isOpen={openTopup} onClose={() => setOpenTopup(false)} />
       <aside
-        className={`hidden select-none lg:flex flex-col justify-between w-[16.875rem] xl:h-[42.3rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow`}
+        className={`absolute h-screen z-50 left-0 top-0 lg:hidden select-none flex flex-col justify-between w-[16.875rem] xl:h-[42.3rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow transition-all ease-in-out`}
       >
         <div>
           <div
@@ -120,4 +120,4 @@ function AsideMenu(props) {
   );
 }
 
-export default AsideMenu;
+export default MobileSideBar;

@@ -7,7 +7,6 @@ import { editImage, getProfile } from "@/utils/https/user";
 import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import Modal from "@/components/modal";
 import placeholder from "../../assets/header/Placeholder.png";
 import Image from "next/image";
 import Loader from "@/components/Loader";
@@ -76,6 +75,7 @@ function Profile() {
       console.log(result.data.data.image);
       const image = result.data.data.image;
       dispatch(userAction.editImage(image));
+      dispatch(userAction.getDataProfile(result.data.data));
       setData(result.data.data);
       setIsLoading(false);
     } catch (error) {
@@ -188,7 +188,6 @@ function Profile() {
             </button>
           </div>
         </section>
-        <Modal />
       </main>
       <Footer />
     </Title>

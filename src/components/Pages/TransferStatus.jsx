@@ -6,7 +6,7 @@ function TransferStatus({ isOpen, isSuccess, data }) {
   return (
     <>
       {isOpen && (
-        <section className="w-screen h-screen fixed inset-0 flex justify-center items-center bg-slate-900/90 z-50">
+        <section className="w-screen h-screen fixed inset-0 flex justify-center items-center bg-black/50 z-50">
           <div className="w-[90%] md:w-2/6 md:max-w-md p-5 md:p-10 flex flex-col bg-white rounded-2xl justify-center items-center">
             <span
               className={`w-10 h-10 md:w-16 md:h-16 flex justify-center items-center ${

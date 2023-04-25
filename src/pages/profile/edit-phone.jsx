@@ -70,7 +70,7 @@ function EditPhone() {
   };
 
   return (
-    <Title>
+    <Title title={"Edit Phone Number"}>
       <Header />
       <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary font-nunitosans">
         <Aside namePage="profile" />

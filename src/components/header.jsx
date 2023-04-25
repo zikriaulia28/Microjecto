@@ -4,6 +4,7 @@ import notification from "../assets/header/bell.svg";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import MobileSideBar from "./mobileSideBar";
 
 function Header() {
   const userStore = useSelector((state) => state.user);
@@ -13,6 +14,7 @@ function Header() {
   const firstname = userStore.data.firstName;
   const lastname = userStore.data.lastName;
   const phone = userStore.data.phone;
+  const balance = userStore.data.balance;
   const name = `${firstname} ${lastname}`;
   const [show, setShow] = useState(false);
 
@@ -28,6 +30,10 @@ function Header() {
     router.push(to);
   };
 
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataImage]);
+
   return (
     <>
       <nav
@@ -35,14 +41,40 @@ function Header() {
           token ? "shadow bg-white rounded-b-2xl" : " bg-secondary"
         } font-nunitosans `}
       >
-        <div className="flex justify-between">
-          <h1 className="font-bold text-3xl text-primary">FazzPay</h1>
+        <div className="flex flex-col justify-between">
           {token ? (
             <>
-              <div className="hidden lg:flex gap-6 items-center">
+              <div className="flex flex-row-reverse lg:flex-row justify-between">
+                <h1 className="font-bold text-3xl text-primary text-center">
+                  FazzPay
+                </h1>
+                <div className="lg:hidden" onClick={handleShow}>
+                  <i className="bi bi-caret-right-fill text-4xl"></i>
+                </div>
+                <div className="hidden lg:flex gap-6 items-center">
+                  <div className="w-12 h-12 rounded-xl">
+                    <Image
+                      src={imgUrl || placeholder}
+                      alt="profile"
+                      className="w-full h-full object-cover rounded-xl"
+                      width={50}
+                      height={50}
+                    />
+                  </div>
+                  <div>
+                    <p className="font-bold text-lg">{name}</p>
+                    <p className="text-font-primary-blur">{phone}</p>
+                  </div>
+                  <div className="w-6 h-6">
+                    <Image src={notification} alt="notification" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white  lg:hidden  w-full px-4 pt-6 rounded-xl flex flex-row justify-between transition-all">
                 <div className="w-12 h-12 rounded-xl">
                   <Image
-                    src={imgUrl || placeholder}
+                    src={imgUrl ? imgUrl : placeholder}
                     alt="profile"
                     className="w-full h-full object-cover rounded-xl"
                     width={50}
@@ -51,35 +83,27 @@ function Header() {
                 </div>
                 <div>
                   <p className="font-bold text-lg">{name}</p>
-                  <p className="text-font-primary-blur">{phone}</p>
+                  <p className="text-font-primary-blur">
+                    Rp. {(balance && balance.toLocaleString("id-ID")) || 0}
+                  </p>
                 </div>
                 <div className="w-6 h-6">
-                  <Image src={notification} alt="notification" />
+                  <Image
+                    src={notification}
+                    alt="notification"
+                    className="w-full h-full"
+                  />
                 </div>
-              </div>
-              <div className="lg:hidden" onClick={handleShow}>
-                <i className="bi bi-list text-4xl"></i>
               </div>
               {show && (
                 <>
-                  <div className="bg-white absolute right-0 z-50 lg:hidden top-20 w-full px-4 py-6 rounded-xl flex flex-row justify-between transition-all">
-                    <div className="w-12 h-12 rounded-xl">
-                      <Image
-                        src={placeholder}
-                        alt="profile"
-                        className="w-full h-full object-cover rounded-xl"
-                        width={50}
-                        height={50}
-                      />
-                    </div>
-                    <div>
-                      <p className="font-bold text-lg">{name}</p>
-                      <p className="text-font-primary-blur">
-                        +62 8139 3877 7946
-                      </p>
-                    </div>
-                    <div className="w-6 h-6">
-                      <Image src={notification} alt="notification" />
+                  <div>
+                    <MobileSideBar />
+                    <div
+                      className="lg:hidden absolute left-[61%] top-[50%] md:left-[34%] z-[999]"
+                      onClick={handleShow}
+                    >
+                      <i className="bi bi-caret-right-fill text-4xl text-secondary"></i>
                     </div>
                   </div>
                 </>

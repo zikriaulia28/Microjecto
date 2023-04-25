@@ -1,13 +1,9 @@
 @tailwind base;
 
-:root {
-  --primary: #6379F4;
-  --secondary: #473AD10F;
-}
+
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--secondary) var(--primary);
 }
 
 /* Chrome, Edge, and Safari */

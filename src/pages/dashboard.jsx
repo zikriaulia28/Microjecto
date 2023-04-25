@@ -37,7 +37,7 @@ function Dashboard() {
   useEffect(() => {
     fetching();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId]);
+  }, [setDataBalance]);
   return (
     <Title title="Dashboard">
       <Header />
@@ -75,18 +75,6 @@ function Dashboard() {
           </div>
           <div className="flex gap-5">
             <div className="hidden lg:block bg-white xl:w-[60%] xl:h-[28.2rem] rounded-xl shadow p-8">
-              {/* <div className="flex justify-between">
-                <div>
-                  <i className="bi bi-arrow-down text-xl text-green-600 mr-2"></i>
-                  <p>Income</p>
-                  <p>Rp2.120.000</p>
-                </div>
-                <div>
-                  <i className="bi bi-arrow-up mr-2 text-xl text-red-600"></i>
-                  <p>Expense</p>
-                  <p>Rp2.120.000</p>
-                </div>
-              </div> */}
               <DashbordDiagram
                 userId={userId}
                 token={token}
