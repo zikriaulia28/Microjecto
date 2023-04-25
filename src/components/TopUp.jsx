@@ -66,7 +66,7 @@ function TopUp({ isOpen, onClose }) {
   return (
     <>
       {isOpen && (
-        <section className="w-screen h-screen fixed top-0 left-0 flex justify-center items-center bg-slate-900/90 z-50">
+        <section className="w-screen h-screen fixed top-0 left-0 flex justify-center items-center bg-black/50 z-50">
           {isSuccess ? (
             <div className="w-4/5 md:w-[560px] p-5 md:p-10 flex flex-col bg-white rounded-2xl">
               <p className="text-3xl font-bold text-center my-14">

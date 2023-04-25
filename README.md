@@ -114,7 +114,10 @@ You may also see any lint errors in the console.
 
 ## Documentation
 
-<img width="500" src="./src/assets/Readme/1.png" alt="Landing page">
-<img width="500" src="./src/assets/Readme/2.png" alt="Landing page">
-<img width="500" src="./src/assets/Readme/3.png" alt="Landing page">
-<img width="500" src="./src/assets/Readme/4.png" alt="Landing page">
+<img width="500" src="./src/assets/readme/readme1.png" alt="Landing page">
+<img width="500" src="./src/assets/readme/readme2.png" alt="Landing page">
+<img width="500" src="./src/assets/readme/readme3.png" alt="Landing page">
+<img width="500" src="./src/assets/readme/readme4.png" alt="Landing page">
+<img width="500" src="./src/assets/readme/readme5.png" alt="Landing page">
+<img width="500" src="./src/assets/readme/readme6.png" alt="Landing page">
+<img width="500" src="./src/assets/readme/readme7.png" alt="Landing page">
