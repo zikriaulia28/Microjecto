@@ -115,7 +115,7 @@ function Profile() {
       <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
         <Aside namePage="profile" />
 
-        <section className="flex flex-col items-center  pt-12 w-[393px] md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg  pb-10 xl:px-44">
+        <section className="flex flex-col items-center  pt-12 w-[393px] md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow  pb-10 xl:px-44">
           {isLoading ? (
             <Loader />
           ) : (
@@ -132,13 +132,15 @@ function Profile() {
                 />
               </div>
               <div className="flex gap-3 mt-3 cursor-pointer relative">
-                <i className="bi bi-pencil"></i>
-                <p>Edit</p>
-                <input
-                  type="file"
-                  className="absolute cursor-pointer -left-32 opacity-0"
-                  onChange={onChangeFile}
-                />
+                <label htmlFor="inputChange" className="cursor-pointer">
+                  <i className="bi bi-pencil"></i> Edit
+                  <input
+                    type="file"
+                    id="inputChange"
+                    className=" hidden"
+                    onChange={onChangeFile}
+                  />
+                </label>
                 {save && (
                   <button
                     className="absolute z-10 top-5 left-3 cursor-pointer"

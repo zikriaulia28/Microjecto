@@ -89,7 +89,7 @@ function ChangePin() {
       <Header />
       <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
         <Aside namePage="profile" />
-        <section className="flex flex-col p-6 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg">
+        <section className="flex flex-col p-6 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow">
           <h1 className="font-bold text-lg">Change PIN</h1>
           <p className="w-[21.375rem] text-font-primary-blur mt-6">
             Type your new 6 digits security PIN to use in Fazzpay.

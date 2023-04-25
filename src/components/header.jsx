@@ -32,7 +32,7 @@ function Header() {
     <>
       <nav
         className={`px-4 py-6 xl:px-36 xl:py-12   ${
-          token ? "shadow-xl bg-white rounded-b-2xl" : " bg-secondary"
+          token ? "shadow bg-white rounded-b-2xl" : " bg-secondary"
         } font-nunitosans `}
       >
         <div className="flex justify-between">

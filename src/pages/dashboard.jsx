@@ -61,7 +61,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="flex gap-5">
-            <div className="hidden lg:block bg-white xl:w-[25rem] xl:h-[28.4rem] rounded-xl shadow-lg p-8">
+            <div className="hidden lg:block bg-white xl:w-[25rem] xl:h-[28.4rem] rounded-xl shadow p-8">
               {/* <div className="flex justify-between">
                 <div>
                   <i className="bi bi-arrow-down text-xl text-green-600 mr-2"></i>
@@ -80,7 +80,7 @@ function Dashboard() {
                 controller={controller}
               />
             </div>
-            <div className="flex flex-col gap-10 bg-white w-full xl:w-[22rem] h-[28.4rem] rounded-xl shadow-lg p-8">
+            <div className="flex flex-col gap-10 bg-white w-full xl:w-[22rem] h-[28.4rem] rounded-xl shadow p-8">
               <div className="flex justify-between">
                 <h2>Transaction History</h2>
                 <p>See All</p>

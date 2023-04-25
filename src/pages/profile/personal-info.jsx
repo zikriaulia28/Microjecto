@@ -19,6 +19,9 @@ function PersonalInfo() {
   const lastName = userStore.data.lastName;
   const email = userStore.data.email;
   const phone = userStore.data.phone;
+  const [isLoading, setLoading] = useState(false);
+  const [isSuccess, setSuccess] = useState(false);
+  const [msg, setMsg] = useState("");
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({
     firstName: firstName,
@@ -31,18 +34,25 @@ function PersonalInfo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const result = await editProfile(token, userId, form, controller);
       const firstName = result.data.data.firstName;
       const lastName = result.data.data.lastName;
+
       if (result.status === 200) {
-        console.log(firstName);
-        console.log(lastName);
         dispatch(userAction.editNameUser({ firstName, lastName }));
         setShow(false);
+        setLoading(false);
+        setSuccess(true);
+        setMsg(result.data.msg);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 3000);
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -65,9 +75,9 @@ function PersonalInfo() {
   return (
     <Title title={"Personal Info"}>
       <Header />
-      <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
+      <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans select-none">
         <Aside namePage="profile" />
-        <section className="flex flex-col p-6 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg">
+        <section className="flex flex-col p-6 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow">
           <h1 className="font-bold text-lg">Personal Information</h1>
           <p className="w-[21.375rem] text-font-primary-blur mt-6">
             We got your personal information from the sign up proccess. If you
@@ -113,24 +123,35 @@ function PersonalInfo() {
                 Manage
               </p>
             </div>
-            {show && (
-              <>
-                <div className="flex justify-center gap-6">
-                  <button
-                    onClick={handleCancel}
-                    className="text-center text-lg cursor-pointer  text-primary outline rounded-xl w-24 px-4 py-2 hover:bg-primary hover:text-white"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSubmit}
-                    className="text-center text-lg cursor-pointer  text-primary outline rounded-xl w-24 px-4 py-2 hover:bg-primary hover:text-white"
-                  >
-                    Save
-                  </button>
-                </div>
-              </>
-            )}
+            <div className="relative">
+              <p className="absolute w-full text-center my-5 text-green-500 font-semibold">
+                {isSuccess && msg}
+              </p>
+              {show && (
+                <>
+                  <div className="flex justify-center relative">
+                    {isLoading ? (
+                      <progress className="progress progress-secondary w-full"></progress>
+                    ) : (
+                      <div className="absolute top-0">
+                        <button
+                          onClick={handleCancel}
+                          className="text-center text-lg cursor-pointer mr-4  text-primary outline rounded-xl w-24 px-4 py-2 hover:bg-primary hover:text-white"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          onClick={handleSubmit}
+                          className="text-center text-lg cursor-pointer  text-primary outline rounded-xl w-24 px-4 py-2 hover:bg-primary hover:text-white"
+                        >
+                          Save
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </section>
       </main>
