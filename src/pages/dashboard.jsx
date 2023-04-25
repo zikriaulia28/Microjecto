@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { userAction } from "@/redux/slices/auth";
 import Loader from "@/components/Loader";
 import Link from "next/link";
+import TopUp from "@/components/TopUp";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function Dashboard() {
   const userId = userStore.data.id;
   const [isLoading, setLoading] = useState(true);
   const [dataBalance, setDataBalance] = useState({});
+  const [isTopup, setIsTopup] = useState(false);
 
   const fetching = async () => {
     setLoading(true);
@@ -41,6 +43,7 @@ function Dashboard() {
   return (
     <Title title="Dashboard">
       <Header />
+      <TopUp isOpen={isTopup} onClose={() => setIsTopup(false)} />
       <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary select-none">
         <Aside namePage="dashboard" />
         <section className="flex flex-col gap-5 w-full h-full">
@@ -63,11 +66,15 @@ function Dashboard() {
             )}
 
             <div className="flex flex-col gap-4">
-              <button className="flex border bg-white opacity-20 px-7 py-4 gap-3 rounded-xl">
-                <i className="bi bi-arrow-up mr-2"></i>
-                <p>Transfer</p>
+              <button className="flex border text-white hover:opacity-70 px-7 py-4 gap-3 rounded-xl">
+                <Link href={"/transfer"}>
+                  <i className="bi bi-arrow-up mr-2 "></i> Transfer
+                </Link>
               </button>
-              <button className="flex border bg-white opacity-20 px-7 py-4 gap-3 rounded-xl">
+              <button
+                className="flex border text-white hover:opacity-70 px-7 py-4 gap-3 rounded-xl"
+                onClick={() => setIsTopup(true)}
+              >
                 <i className="bi bi-plus-lg mr-2"></i>
                 <p>Top Up</p>
               </button>
