@@ -1,7 +1,7 @@
 import Title from "@/components/Title";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import Aside from "@/components/AsideMenu";
+import Aside from "@/components/SideBar";
 import { logout } from "@/utils/https/auth";
 import { editImage, getProfile } from "@/utils/https/user";
 import { useState, useMemo, useEffect } from "react";
@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import Modal from "@/components/modal";
 import placeholder from "../../assets/header/Placeholder.png";
 import Image from "next/image";
-import Spinner from "@/components/spinner";
+import Loader from "@/components/Loader";
 import { userAction } from "@/redux/slices/auth";
 import { useDispatch } from "react-redux";
 import PrivateRoute from "@/utils/wrapper/privateRoute";
@@ -113,11 +113,11 @@ function Profile() {
     <Title title={"Profile"}>
       <Header />
       <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
-        <Aside />
+        <Aside namePage="profile" />
 
         <section className="flex flex-col items-center  pt-12 w-[393px] md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg  pb-10 xl:px-44">
           {isLoading ? (
-            <Spinner />
+            <Loader />
           ) : (
             <>
               <div className="w-20 h-20 bg-slate-400 rounded-xl">

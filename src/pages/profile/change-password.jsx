@@ -1,7 +1,7 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Title from "@/components/Title";
-import Aside from "@/components/AsideMenu";
+import Aside from "@/components/SideBar";
 import Image from "next/image";
 import show from "../../assets/auth/show.svg";
 import hide from "../../assets/auth/hide.svg";
@@ -111,7 +111,7 @@ function ChangePassword() {
     <Title title={"Change Password"}>
       <Header />
       <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary font-nunitosans">
-        <Aside />
+        <Aside namePage="profile" />
         <section className="flex flex-col p-6 md:w-[736px] xl:w-[53.125rem] xl:h-[42.375rem] bg-white rounded-xl shadow-lg">
           <h1 className="font-bold text-lg">Change Password</h1>
           <p className="w-[21.375rem] text-font-primary-blur mt-6">

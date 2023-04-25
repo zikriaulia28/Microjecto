@@ -77,35 +77,58 @@ function AsideMenu(props) {
           className="flex gap-5 cursor-pointer relative"
           onClick={() => router.push("/dashboard")}
         >
-          <div className="border border-l-4 border-l-primary h-full absolute -left-9"></div>
-          <div className="w-7 h-7">
-            <Image src={grid} alt="grid" />
+          {props.namePage === "dashboard" && (
+            <div className="border border-l-4 border-l-primary h-full absolute -left-9"></div>
+          )}
+          <div
+            className={`flex gap-4 text-lg text-font-primary-blurs ${
+              props.namePage === "dashboard" && "text-primary"
+            }`}
+          >
+            <i className="bi bi-grid text-2xl"></i>Dashboard
           </div>
-          <p className="text-primary text-lg">Dashboard</p>
         </div>
 
-        <div className="flex gap-5 cursor-pointer mt-12">
-          <div className="w-7 h-7">
-            <Image src={arrowUp} alt="arrowUp" />
+        <div className="flex gap-5 cursor-pointer mt-12 relative">
+          {props.namePage === "topup" && (
+            <div className="border border-l-4 border-l-primary h-full absolute -left-9"></div>
+          )}
+          <div
+            className={`flex gap-4 text-lg text-font-primary-blurs ${
+              props.namePage === "topup" && "text-primary"
+            }`}
+          >
+            <i className="bi bi-arrow-up text-2xl"></i>Transfer
           </div>
-          <p className="text-font-primary-blurs text-lg">Transfer</p>
         </div>
 
-        <div className="flex gap-5 cursor-pointer mt-12">
-          <div className="w-7 h-7">
-            <Image src={plus} alt="plus" />
+        <div className="flex gap-5 cursor-pointer mt-12 relative">
+          {props.namePage === "topup" && (
+            <div className="border border-l-4 border-l-primary h-full absolute -left-9"></div>
+          )}
+          <div
+            className={`flex gap-4 text-lg text-font-primary-blurs ${
+              props.namePage === "topup" && "text-primary"
+            }`}
+          >
+            <i className="bi bi-plus-lg text-2xl"></i>Top Up
           </div>
-          <p className="text-font-primary-blurs text-lg">Top Up</p>
         </div>
 
         <div
-          className="flex gap-5 cursor-pointer mt-12"
+          className="flex gap-5 cursor-pointer mt-12 relative"
           onClick={() => router.push(`/profile/${userStore.data.id}`)}
         >
-          <div className="w-7 h-7">
-            <Image src={user} alt="user" />
+          {props.namePage === "profile" && (
+            <div className="border border-l-4 border-l-primary h-full absolute -left-9"></div>
+          )}
+          <div
+            className={`flex gap-4 text-lg text-font-primary-blurs ${
+              props.namePage === "profile" && "text-primary"
+            }`}
+          >
+            <i className="bi bi-person text-2xl"></i>Profile
           </div>
-          <p className="text-font-primary-blurs text-lg">Profile</p>
         </div>
       </div>
       <div className="flex gap-5 cursor-pointer" onClick={handlerLogout}>

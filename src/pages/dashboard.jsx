@@ -1,9 +1,7 @@
 import Title from "@/components/Title";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import Image from "next/image";
-import Aside from "@/components/AsideMenu";
-import placeholder from "../assets/header/Placeholder.png";
+import Aside from "@/components/SideBar";
 import { getDashboard } from "@/utils/https/user";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
@@ -36,7 +34,7 @@ function Dashboard() {
     <Title title="Dashboard">
       <Header />
       <main className="flex gap-5 px-4 xl:px-36 py-10 bg-secondary">
-        <Aside />
+        <Aside namePage="dashboard" />
         <section className="flex flex-col gap-5">
           <div className="flex justify-between bg-primary rounded-lg shadow-xl p-8 w-full xl:w-[48.5rem]">
             <div className="flex flex-col gap-6">
