@@ -178,7 +178,7 @@ function Transfer() {
             >
               Prev
             </button>
-            <button className="btn btn-secondary btn-outline btn-sm font-bold">
+            <button className="font-bold px-2">
               Page {metaPage} / {totalPage}
             </button>
             <button

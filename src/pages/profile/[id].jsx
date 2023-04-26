@@ -74,7 +74,7 @@ function Profile() {
     setIsLoading(true);
     try {
       const result = await getProfile(token, userId, controller);
-      console.log(result.data.data.image);
+      // console.log(result.data.data.image);
       const image = result.data.data.image;
       dispatch(userAction.editImage(image));
       setData(result.data.data);

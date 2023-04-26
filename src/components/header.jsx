@@ -3,10 +3,12 @@ import Image from "next/image";
 import notification from "../assets/header/bell.svg";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import MobileSideBar from "./mobileSideBar";
+import Notifications from "./Pages/Notification";
 
 function Header() {
+  const controller = useMemo(() => new AbortController(), []);
   const userStore = useSelector((state) => state.user);
   const token = userStore.token;
   const router = useRouter();
@@ -17,7 +19,9 @@ function Header() {
   const balance = userStore.data.balance;
   const name = `${firstname} ${lastname}`;
   const [show, setShow] = useState(false);
+  const [showNotif, setShowNotif] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
+  const [dataImage, setDataImage] = useState("");
 
   // const imgUrl =
   //   "https://res.cloudinary.com/dd1uwz8eu/image/upload/v1666604839/" +
@@ -27,12 +31,16 @@ function Header() {
     setShow((prevState) => !prevState);
   };
 
+  const handleShowNotif = () => {
+    setShowNotif((prevState) => !prevState);
+  };
+
   const handleNavigate = (to) => {
     router.push(to);
   };
 
   useEffect(() => {
-    const dataImage = userStore.data.image;
+    setDataImage(userStore.data.image);
     const newImgUrl =
       "https://res.cloudinary.com/dd1uwz8eu/image/upload/v1666604839/" +
       dataImage;
@@ -61,7 +69,7 @@ function Header() {
                 <div className="hidden lg:flex gap-6 items-center">
                   <div className="w-12 h-12 rounded-xl">
                     <Image
-                      src={imgUrl || placeholder}
+                      src={dataImage ? imgUrl : placeholder}
                       alt="profile"
                       className="w-full h-full object-cover rounded-xl"
                       width={50}
@@ -72,16 +80,19 @@ function Header() {
                     <p className="font-bold text-lg">{name}</p>
                     <p className="text-font-primary-blur">{phone}</p>
                   </div>
-                  <div className="w-6 h-6">
+                  <div className="w-6 h-6" onClick={handleShowNotif}>
                     <Image src={notification} alt="notification" />
                   </div>
+                  {showNotif && (
+                    <Notifications token={token} controller={controller} />
+                  )}
                 </div>
               </div>
 
               <div className="bg-white  lg:hidden  w-full px-4 pt-6 rounded-xl flex flex-row justify-between transition-all">
                 <div className="w-12 h-12 rounded-xl">
                   <Image
-                    src={imgUrl ? imgUrl : placeholder}
+                    src={dataImage ? imgUrl : placeholder}
                     alt="profile"
                     className="w-full h-full object-cover rounded-xl"
                     width={50}
@@ -94,13 +105,16 @@ function Header() {
                     Rp. {(balance && balance.toLocaleString("id-ID")) || 0}
                   </p>
                 </div>
-                <div className="w-6 h-6">
+                <div className="w-6 h-6" onClick={handleShowNotif}>
                   <Image
                     src={notification}
                     alt="notification"
                     className="w-full h-full"
                   />
                 </div>
+                {showNotif && (
+                  <Notifications token={token} controller={controller} />
+                )}
               </div>
               {show && (
                 <>

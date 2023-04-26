@@ -4,7 +4,7 @@ import { useRef, useState, useMemo } from "react";
 import { changePin } from "@/utils/https/auth";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import PublicRoute from "@/utils/wrapper/publicRoute";
+import PrivateRoute from "@/utils/wrapper/privateRoute";
 
 function SuccessCreate() {
   const router = useRouter();
@@ -21,7 +21,7 @@ function SuccessCreate() {
         features in FazzPay.
       </p>
       <button
-        onClick={() => router.push("/home")}
+        onClick={() => router.push("/dashboard")}
         className="mt-20 text-center py-4 rounded-lg cursor-pointer w-full border-none bg-primary text-white"
       >
         Go To Dashboard
@@ -99,7 +99,7 @@ function Pin() {
     setPin(pins);
   };
 
-  console.log(pin);
+  // console.log(pin);
 
   return (
     <Title title="Create PIN">
@@ -125,8 +125,8 @@ function Pin() {
                 <h1 className="text-center text-primary font-bold text-3xl lg:hidden">
                   FazzPay
                 </h1>
-                <form className="mt-16 bg-white border border-white rounded-t-3xl w-full px-4 py-10 ">
-                  <div className="flex gap-5">
+                <form className="mt-16 bg-white border border-white rounded-t-3xl w-full px-2 md:px-40 lg:px-4 py-10 ">
+                  <div className="flex justify-between">
                     <input
                       ref={input1Ref}
                       type="text"
@@ -223,4 +223,4 @@ function Pin() {
   );
 }
 
-export default PublicRoute(Pin);
+export default PrivateRoute(Pin);

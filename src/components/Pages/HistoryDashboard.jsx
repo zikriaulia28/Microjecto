@@ -3,6 +3,7 @@ import Loader from "../Loader";
 import { getHistories } from "@/utils/https/history";
 import Image from "next/image";
 import placeholder from "../../assets/header/Placeholder.png";
+import { result } from "lodash";
 
 function HistoryDashboard({ token, controller }) {
   const [isLoading, setLoading] = useState(true);
@@ -20,6 +21,8 @@ function HistoryDashboard({ token, controller }) {
     }
   };
 
+  // console.log(dataHistory);
+
   useEffect(() => {
     fetching();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,43 +37,51 @@ function HistoryDashboard({ token, controller }) {
         <Loader />
       ) : (
         <div className="h-full">
-          {dataHistory.map((item) => (
-            <div
-              className="flex justify-between mb-8 items-center"
-              key={item.id}
-            >
-              <div className="flex  gap-4">
-                <div className="w-14 h-14">
-                  <Image
-                    src={item.image ? imgUrl + item.image : placeholder}
-                    alt="profile"
-                    width={50}
-                    height={50}
-                    className="w-full h-full rounded-xl object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="w-24">{item.fullName}</p>
-                  <p className="text-sm text-font-primary-blur mt-2">
-                    {item.type}
-                  </p>
-                </div>
-              </div>
-              <div>
-                <p
-                  className={`${
-                    item.type === "accept" || item.type === "topup"
-                      ? "text-green-500"
-                      : "text-red-500"
-                  } font-bold ml-auto`}
+          {dataHistory.length > 1 ? (
+            <>
+              {dataHistory.map((item) => (
+                <div
+                  className="flex justify-between mb-8 items-center"
+                  key={item.id}
                 >
-                  {item.type === "accept" || item.type === "topup" ? "+" : "-"}
-                  {"Rp. "}
-                  {item.amount.toLocaleString("id-ID")}
-                </p>
-              </div>
-            </div>
-          ))}
+                  <div className="flex  gap-4">
+                    <div className="w-14 h-14">
+                      <Image
+                        src={item.image ? imgUrl + item.image : placeholder}
+                        alt="profile"
+                        width={50}
+                        height={50}
+                        className="w-full h-full rounded-xl object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="w-24">{item.fullName}</p>
+                      <p className="text-sm text-font-primary-blur mt-2">
+                        {item.type}
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <p
+                      className={`${
+                        item.type === "accept" || item.type === "topup"
+                          ? "text-green-500"
+                          : "text-red-500"
+                      } font-bold ml-auto`}
+                    >
+                      {item.type === "accept" || item.type === "topup"
+                        ? "+"
+                        : "-"}
+                      {"Rp. "}
+                      {item.amount.toLocaleString("id-ID")}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <div className="grid place-items-center h-full">No History</div>
+          )}
         </div>
       )}
     </>
