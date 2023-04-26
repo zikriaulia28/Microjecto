@@ -20,7 +20,7 @@ function AsideMenu(props) {
     <>
       <TopUp isOpen={isTopup} onClose={() => setIsTopup(false)} />
       <aside
-        className={`hidden select-none lg:flex flex-col justify-between w-[16.875rem] xl:h-[42.3rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow`}
+        className={`hidden select-none lg:flex flex-col justify-between w-[16.875rem] xl:h-[42.375rem] pl-9 py-12 pr-24 bg-white rounded-xl shadow`}
       >
         <div>
           <div

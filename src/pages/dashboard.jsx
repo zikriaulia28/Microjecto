@@ -47,8 +47,8 @@ function Dashboard() {
       <TopUp isOpen={isTopup} onClose={() => setIsTopup(false)} />
       <main className="flex gap-5 px-4 xl:px-20 py-10 bg-secondary select-none">
         <Aside namePage="dashboard" />
-        <section className="flex flex-col gap-5 w-full h-full">
-          <div className="flex justify-between bg-primary rounded-lg shadow-xl p-8 w-full xl:w-full">
+        <section className="flex flex-col gap-5 w-full lg:h-[42.375rem]">
+          <div className="flex justify-between bg-primary rounded-lg shadow-xl p-8 w-full">
             {isLoading ? (
               <Loader />
             ) : (
@@ -81,15 +81,15 @@ function Dashboard() {
               </button>
             </div>
           </div>
-          <div className="flex gap-5">
-            <div className="hidden lg:block bg-white xl:w-[60%] xl:h-[28.2rem] rounded-xl shadow p-8">
+          <div className="flex flex-col lg:flex-row h-full gap-5">
+            <div className=" bg-white lg:w-[60%] lg:h-[28.7rem] rounded-xl shadow p-4 md:p-8">
               <DashbordDiagram
                 userId={userId}
                 token={token}
                 controller={controller}
               />
             </div>
-            <div className="flex flex-col gap-10 bg-white w-full xl:w-[40%] h-[28.2rem] rounded-xl shadow p-8">
+            <div className="flex flex-col gap-4 bg-white w-full lg:w-[40%] h-[28.7rem] rounded-xl shadow p-8">
               <div className="flex justify-between">
                 <h2>Transaction History</h2>
                 <Link href={"/history"} className="text-primary cursor-pointer">

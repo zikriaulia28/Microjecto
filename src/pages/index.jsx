@@ -185,10 +185,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="flex justify-between items-center relative px-4 py-10 xl:px-32  xl:py-32">
-          <div className="absolute xl:relative bg-white w-10 h-10 left-2 md:left-4 rounded-2xl grid place-items-center cursor-pointer">
-            <i className="bi bi-arrow-left"></i>
-          </div>
+        <section className=" px-4 py-10 xl:px-32  xl:py-32">
           <div className="flex flex-col items-center">
             <h1 className="font-extrabold text-4xl xl:text-6xl text-center">
               What Users are <span className="text-primary">Saying.</span>
@@ -197,26 +194,85 @@ function Home() {
               We have some great features from the application and it’s totally
               free to use by all users around the world.
             </p>
-            <div className="w-4/5 md:w-3/4 xl:w-full flex flex-col items-center p-6 md:p-14 bg-white mt-14 rounded-3xl">
-              <div className="w-[7.5rem] h-[7.5rem]">
-                <Image
-                  src={img7}
-                  alt="peopel"
-                  className="w-full h-full object-cover rounded-2xl"
-                />
+            <div className="carousel w-full ">
+              <div
+                id="slide1"
+                className="carousel-item relative w-full flex flex-col items-center py-8 bg-white mt-14 rounded-3xl"
+              >
+                {/* <div className="absolute bg-white w-10 h-10 -left-12 top-[50%] rounded-2xl grid place-items-center cursor-pointer">
+                <i className="bi bi-arrow-left"></i>
               </div>
-              <p className="text-2xl font-bold mt-7">Alex Hansinburg</p>
-              <p className="text-xl text-font-primary-blur">Designer</p>
-              <p className="xl:w-[869px] text-center text-lg text-font-primary mt-11">
-                “This is the most outstanding app that I’ve ever try in my live,
-                this app is such an amazing masterpiece and it’s suitable for
-                you who is bussy with their bussiness and must transfer money to
-                another person aut there. Just try this app and see the power!”
-              </p>
+              <div className="absolute -right-12 top-[50%] bg-white w-10 h-10 rounded-2xl grid place-items-center cursor-pointer">
+                <i className="bi bi-arrow-right"></i>
+              </div> */}
+                <div className="w-[5.5rem] h-[5.5rem] md:w-[7.5rem] md:h-[7.5rem]">
+                  <Image
+                    src={img7}
+                    alt="peopel"
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+                <p className="text-2xl font-bold mt-7">Alex Hansinb</p>
+                <p className="text-xl text-font-primary-blur">Designer</p>
+                <p className="xl:w-[869px] text-center text-lg text-font-primary mt-11">
+                  “This is the most outstanding app that I’ve ever try in my
+                  live,
+                  <span className="hidden lg:block">
+                    this app is such an amazing masterpiece and it’s suitable
+                    for you who is bussy with their bussiness and must transfer
+                    money to another person aut there. Just try this app and see
+                    the power!”
+                  </span>
+                </p>
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                  <a href="#slide4" class="btn btn-circle">
+                    ❮
+                  </a>
+                  <a href="#slide2" class="btn btn-circle">
+                    ❯
+                  </a>
+                </div>
+              </div>
+
+              <div
+                id="slide2"
+                className="carousel-item relative w-full flex flex-col items-center py-8 bg-white mt-14 rounded-3xl"
+              >
+                {/* <div className="absolute bg-white w-10 h-10 -left-12 top-[50%] rounded-2xl grid place-items-center cursor-pointer">
+                <i className="bi bi-arrow-left"></i>
+              </div>
+              <div className="absolute -right-12 top-[50%] bg-white w-10 h-10 rounded-2xl grid place-items-center cursor-pointer">
+                <i className="bi bi-arrow-right"></i>
+              </div> */}
+                <div className="w-[5.5rem] h-[5.5rem] md:w-[7.5rem] md:h-[7.5rem]">
+                  <Image
+                    src={img7}
+                    alt="peopel"
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+                <p className="text-2xl font-bold mt-7">Alex Hansinburg</p>
+                <p className="text-xl text-font-primary-blur">Frontend</p>
+                <p className="xl:w-[869px] text-center text-lg text-font-primary mt-11">
+                  “This is the most outstanding app that I’ve ever try in my
+                  live,
+                  <span className="hidden lg:block">
+                    this app is such an amazing masterpiece and it’s suitable
+                    for you who is bussy with their bussiness and must transfer
+                    money to another person aut there. Just try this app and see
+                    the power!”
+                  </span>
+                </p>
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                  <a href="#slide1" class="btn btn-circle">
+                    ❮
+                  </a>
+                  <a href="#slide2" class="btn btn-circle">
+                    ❯
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="absolute xl:relative right-2 md:right-4 bg-white w-10 h-10 rounded-2xl grid place-items-center cursor-pointer">
-            <i className="bi bi-arrow-right"></i>
           </div>
         </section>
       </main>

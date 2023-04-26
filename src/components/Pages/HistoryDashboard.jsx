@@ -33,7 +33,7 @@ function HistoryDashboard({ token, controller }) {
       {isLoading ? (
         <Loader />
       ) : (
-        <div>
+        <div className="h-full">
           {dataHistory.map((item) => (
             <div
               className="flex justify-between mb-8 items-center"
@@ -50,7 +50,7 @@ function HistoryDashboard({ token, controller }) {
                   />
                 </div>
                 <div>
-                  <p>{item.fullName}</p>
+                  <p className="w-24">{item.fullName}</p>
                   <p className="text-sm text-font-primary-blur mt-2">
                     {item.type}
                   </p>

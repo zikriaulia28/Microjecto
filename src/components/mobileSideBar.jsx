@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { logout } from "@/utils/https/auth";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";

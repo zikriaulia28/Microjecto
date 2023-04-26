@@ -23,6 +23,7 @@ function Profile() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isLogout, setIsLogout] = useState(false);
+  const [update, setUpdate] = useState(false);
   const userStore = useSelector((state) => state.user);
   const token = userStore.token;
   const userId = userStore.data.id;
@@ -50,9 +51,10 @@ function Profile() {
         return;
       }
       const result = await editImage(token, userId, image, controller);
-      console.log(result);
+      // console.log(result);
       if (result.status === 200) {
         setIsLoading(false);
+        setUpdate(true);
       }
       setSave(false);
     } catch (error) {
@@ -75,7 +77,6 @@ function Profile() {
       console.log(result.data.data.image);
       const image = result.data.data.image;
       dispatch(userAction.editImage(image));
-      dispatch(userAction.getDataProfile(result.data.data));
       setData(result.data.data);
       setIsLoading(false);
     } catch (error) {
@@ -86,8 +87,11 @@ function Profile() {
 
   useEffect(() => {
     fetchProfile();
+    if (update) {
+      fetchProfile();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [update]);
 
   const handleNavigate = (to) => {
     router.push(to);

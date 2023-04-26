@@ -76,8 +76,8 @@ const userSlice = createSlice({
         },
       };
     },
+
     editImage: (prevState, action) => {
-      console.log(action.payload);
       return {
         ...prevState,
         data: {
@@ -86,6 +86,7 @@ const userSlice = createSlice({
         },
       };
     },
+
     editBalanceRedux: (prevState, action) => {
       return {
         ...prevState,

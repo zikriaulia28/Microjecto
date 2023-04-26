@@ -10,17 +10,18 @@ function Header() {
   const userStore = useSelector((state) => state.user);
   const token = userStore.token;
   const router = useRouter();
-  const dataImage = userStore.data.image;
+  // const dataImage = userStore.data.image;
   const firstname = userStore.data.firstName;
   const lastname = userStore.data.lastName;
   const phone = userStore.data.phone;
   const balance = userStore.data.balance;
   const name = `${firstname} ${lastname}`;
   const [show, setShow] = useState(false);
+  const [imgUrl, setImgUrl] = useState("");
 
-  const imgUrl =
-    "https://res.cloudinary.com/dd1uwz8eu/image/upload/v1666604839/" +
-    dataImage;
+  // const imgUrl =
+  //   "https://res.cloudinary.com/dd1uwz8eu/image/upload/v1666604839/" +
+  //   dataImage;
 
   const handleShow = () => {
     setShow((prevState) => !prevState);
@@ -31,8 +32,14 @@ function Header() {
   };
 
   useEffect(() => {
+    const dataImage = userStore.data.image;
+    const newImgUrl =
+      "https://res.cloudinary.com/dd1uwz8eu/image/upload/v1666604839/" +
+      dataImage;
+
+    setImgUrl(newImgUrl);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataImage]);
+  }, [userStore]);
 
   return (
     <>
@@ -49,7 +56,7 @@ function Header() {
                   FazzPay
                 </h1>
                 <div className="lg:hidden" onClick={handleShow}>
-                  <i className="bi bi-caret-right-fill text-4xl"></i>
+                  <i className="bi bi-caret-right-fill text-4xl text-primary"></i>
                 </div>
                 <div className="hidden lg:flex gap-6 items-center">
                   <div className="w-12 h-12 rounded-xl">
