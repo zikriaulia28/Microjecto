@@ -6,6 +6,7 @@ import { useRef, useState, useMemo } from "react";
 import { changePin } from "@/utils/https/auth";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import PrivateRoute from "@/utils/wrapper/privateRoute";
 
 function ChangePin() {
   const router = useRouter();
@@ -206,4 +207,4 @@ function ChangePin() {
   );
 }
 
-export default ChangePin;
+export default PrivateRoute(ChangePin);

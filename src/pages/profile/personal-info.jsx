@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { editProfile } from "@/utils/https/user";
 import { userAction } from "@/redux/slices/auth";
+import PrivateRoute from "@/utils/wrapper/privateRoute";
 
 function PersonalInfo() {
   const controller = useMemo(() => new AbortController(), []);
@@ -160,4 +161,4 @@ function PersonalInfo() {
   );
 }
 
-export default PersonalInfo;
+export default PrivateRoute(PersonalInfo);

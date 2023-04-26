@@ -8,6 +8,7 @@ import { editProfile } from "@/utils/https/user";
 import { useDispatch } from "react-redux";
 import { userAction } from "@/redux/slices/auth";
 import { useRouter } from "next/router";
+import PrivateRoute from "@/utils/wrapper/privateRoute";
 
 function EditPhone() {
   const router = useRouter();
@@ -63,10 +64,6 @@ function EditPhone() {
       setInvalid(true);
       setLoading(false);
     }
-  };
-
-  const handleNavigate = (to) => {
-    router.push(to);
   };
 
   return (
@@ -147,4 +144,4 @@ function EditPhone() {
   );
 }
 
-export default EditPhone;
+export default PrivateRoute(EditPhone);

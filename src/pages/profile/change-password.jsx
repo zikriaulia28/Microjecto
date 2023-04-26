@@ -9,6 +9,7 @@ import { useState, useMemo } from "react";
 import { editPassword } from "@/utils/https/user";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import PrivateRoute from "@/utils/wrapper/privateRoute";
 
 function ChangePassword() {
   const router = useRouter();
@@ -256,4 +257,4 @@ function ChangePassword() {
   );
 }
 
-export default ChangePassword;
+export default PrivateRoute(ChangePassword);

@@ -12,6 +12,7 @@ import { userAction } from "@/redux/slices/auth";
 import Loader from "@/components/Loader";
 import Link from "next/link";
 import TopUp from "@/components/TopUp";
+import PrivateRoute from "@/utils/wrapper/privateRoute";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -105,4 +106,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default PrivateRoute(Dashboard);

@@ -6,6 +6,7 @@ import { useRef, useState, useMemo } from "react";
 import { checkPin } from "@/utils/https/auth";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import PrivateRoute from "@/utils/wrapper/privateRoute";
 
 function ChangePin() {
   const router = useRouter();
@@ -67,12 +68,6 @@ function ChangePin() {
     const input4 = input4Ref.current.value;
     const input5 = input5Ref.current.value;
     const input6 = input6Ref.current.value;
-
-    // if (!input1 || !input2 || !input3 || !input4 || !input5 || !input6) {
-    //   document.getElementById("confirm-btn").disabled = true;
-    // } else {
-    //   document.getElementById("confirm-btn").disabled = false;
-    // }
 
     const pins = `${input1}${input2}${input3}${input4}${input5}${input6}`;
     setPin(pins);
@@ -189,4 +184,4 @@ function ChangePin() {
   );
 }
 
-export default ChangePin;
+export default PrivateRoute(ChangePin);
