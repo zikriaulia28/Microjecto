@@ -199,12 +199,6 @@ function Home() {
                 id="slide1"
                 className="carousel-item relative w-full flex flex-col items-center py-8 bg-white mt-14 rounded-3xl"
               >
-                {/* <div className="absolute bg-white w-10 h-10 -left-12 top-[50%] rounded-2xl grid place-items-center cursor-pointer">
-                <i className="bi bi-arrow-left"></i>
-              </div>
-              <div className="absolute -right-12 top-[50%] bg-white w-10 h-10 rounded-2xl grid place-items-center cursor-pointer">
-                <i className="bi bi-arrow-right"></i>
-              </div> */}
                 <div className="w-[5.5rem] h-[5.5rem] md:w-[7.5rem] md:h-[7.5rem]">
                   <Image
                     src={img7}
