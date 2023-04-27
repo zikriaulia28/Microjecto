@@ -59,7 +59,7 @@ function AsideMenu(props) {
             className="flex gap-5 cursor-pointer mt-12 relative"
             onClick={() => {
               handleToggleClose();
-              setOpenTopup(!openTopup);
+              setIsTopup(!isTopup);
             }}
           >
             {props.namePage === "topup" && (

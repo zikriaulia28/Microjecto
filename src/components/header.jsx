@@ -78,7 +78,9 @@ function Header() {
                   </div>
                   <div>
                     <p className="font-bold text-lg">{name}</p>
-                    <p className="text-font-primary-blur">{phone}</p>
+                    <p className="text-font-primary-blur">
+                      {phone ? phone : "Not Set Phone"}
+                    </p>
                   </div>
                   <div className="w-6 h-6 relative" onClick={handleShowNotif}>
                     <Image src={notification} alt="notification" />

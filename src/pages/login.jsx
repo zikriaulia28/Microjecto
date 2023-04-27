@@ -70,7 +70,8 @@ function Login() {
         setLoading(false);
         if (result.pin === null) {
           router.push("/pin");
-        } else {
+        }
+        if (result.pin !== null) {
           router.push("/dashboard");
         }
         console.log(resultProfile);
