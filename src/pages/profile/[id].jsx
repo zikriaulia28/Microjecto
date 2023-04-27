@@ -40,6 +40,15 @@ function Profile() {
     }
   };
 
+  const setImgProfile = () => {
+    if (image) {
+      return URL.createObjectURL(image);
+    }
+    if (dataImage) {
+      return imgUrl;
+    }
+    return placeholder;
+  };
   // console.log(image);
   const handlerSave = async (event) => {
     event.preventDefault();
@@ -111,9 +120,7 @@ function Profile() {
             <>
               <div className="w-20 h-20 bg-slate-400 rounded-xl">
                 <Image
-                  src={
-                    image ? URL.createObjectURL(image) : imgUrl || placeholder
-                  }
+                  src={setImgProfile()}
                   alt="image"
                   className="w-full h-full object-cover rounded-xl"
                   width={80}

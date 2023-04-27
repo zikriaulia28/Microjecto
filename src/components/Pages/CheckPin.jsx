@@ -29,7 +29,7 @@ function CheckPin({ dataAuth, isShow, onClose }) {
         input6Ref.current.value = "";
         setInput(false);
         setMsg(result.data.msg);
-        onClose();
+        onClose("success");
       }
     } catch (error) {
       console.log(error);

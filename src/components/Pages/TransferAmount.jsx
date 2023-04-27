@@ -10,6 +10,13 @@ function TransferToUser({ isShow, onClose }, props) {
   const [amount, setAmount] = useState(props.amount || "");
   const [notes, setNotes] = useState(props.note || "");
   const [input, setInput] = useState(false);
+  const [formatId, setFormatId] = useState("");
+
+  const formatRupiah = (value) => {
+    let result = value.toString().replace(/\D/g, "");
+    result = Number(result).toLocaleString("id-ID");
+    return `Rp. ${result}`;
+  };
 
   const onChangeAmount = (event) => {
     const { value } = event.target;
@@ -18,15 +25,23 @@ function TransferToUser({ isShow, onClose }, props) {
     } else {
       setInput(false);
     }
-    const regex = /^[0-9]+$/;
-    if (regex.test(value) || value === "") {
+    const regex = /^[0-9\b,.]+$/;
+    if (
+      value === "" ||
+      regex.test(value) ||
+      !value.endsWith(",") ||
+      !value.endsWith(".")
+    ) {
       setInvalid(false);
-      setAmount(value);
+      const formattedValue = formatRupiah(value);
+      setFormatId(formattedValue);
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const inputAmount = parseFloat(formatId.replace(/\D/g, ""));
+    setAmount(inputAmount);
     if (amount > balance) return setInvalid(true);
     const data = { amount, notes: notes || "" };
     // console.log(data);
@@ -44,7 +59,7 @@ function TransferToUser({ isShow, onClose }, props) {
             type="text"
             id="amount"
             name="amount"
-            value={amount}
+            value={formatId}
             onChange={onChangeAmount}
             className="my-7 focus:outline-none text-4xl text-center font-bold w-full md:w-auto"
             placeholder="Rp. 0,-"
@@ -77,7 +92,7 @@ function TransferToUser({ isShow, onClose }, props) {
           <button
             type="submit"
             onClick={handleSubmit}
-            disabled={isInvalid || amount < 1 || amount === ""}
+            disabled={isInvalid || formatId < 1 || formatId === ""}
             className={`mt-5 py-2 rounded-xl ${
               input ? "text-white bg-primary" : "bg-secondary"
             } outline-none  w-full md:w-80`}

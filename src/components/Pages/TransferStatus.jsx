@@ -62,12 +62,12 @@ function TransferStatus({ isOpen, isSuccess, data }) {
                   <tr>
                     <td>Amount</td>
                     <td>:</td>
-                    <td>{data.amount}</td>
+                    <td>Rp.{data.amount.toLocaleString("id-ID")}</td>
                   </tr>
                   <tr>
                     <td>Balance Left</td>
                     <td>:</td>
-                    <td>{data.balanceLeft}</td>
+                    <td>Rp.{data.balanceLeft.toLocaleString("id-ID")}</td>
                   </tr>
                   <tr>
                     <td>Date & Time</td>

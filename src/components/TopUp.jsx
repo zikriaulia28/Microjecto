@@ -17,31 +17,59 @@ function TopUp({ isOpen, onClose }) {
   const [canClose, setCanClose] = useState(false);
   const [linkPayment, setLinkPay] = useState("");
   const [valueTopup, setValueTopup] = useState("");
+  const [formatRp, setFormatRp] = useState("");
   const [input, setInput] = useState(false);
+
+  const formatRupiah = (value) => {
+    let result = value.toString().replace(/\D/g, "");
+    result = Number(result).toLocaleString("id-ID");
+    return `Rp. ${result}`;
+  };
 
   const onChangeTopup = (event) => {
     setInvalid(false);
     const { value } = event.target;
-    const regex = /^[0-9\b]+$/;
+    const regex = /^[0-9\b,.]+$/;
     if (value.length > 0) {
       setInput(true);
     } else {
       setInput(false);
     }
-    if (value === "" || regex.test(value)) {
-      setValueTopup(value);
+    if (
+      value === "" ||
+      regex.test(value) ||
+      !value.endsWith(",") ||
+      !value.endsWith(".")
+    ) {
+      const formattedValue = formatRupiah(value);
+      setValueTopup(formattedValue);
     }
   };
 
+  // const onChangeTopup = (event) => {
+  //   setInvalid(false);
+  //   const { value } = event.target;
+  //   const regex = /^[0-9\b]+$/;
+  //   if (value.length > 0) {
+  //     setInput(true);
+  //   } else {
+  //     setInput(false);
+  //   }
+  //   if (value === "" || regex.test(value)) {
+  //     setValueTopup(value);
+  //   }
+  // };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (valueTopup < 10000) {
+    const numberValueTopup = parseFloat(valueTopup.replace(/\D/g, ""));
+    if (numberValueTopup < 10000) {
       setInvalid(true);
       setMsgFetch("The minimum amount is Rp. 10.000,-");
       return;
     }
     setLoading(true);
-    const form = { amount: valueTopup };
+    const form = { amount: numberValueTopup };
     try {
       const result = await postTopup(token, form, controller);
       // console.log(result);

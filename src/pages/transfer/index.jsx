@@ -52,10 +52,6 @@ function Transfer() {
   };
 
   useEffect(() => {
-    // console.log(router.query);
-    // setMetaPage(router.query.page || metaPage);
-    // setMetaLimit(router.query.limit || metaLimit);
-    // setSearchPar(router.query.search || searchPar);
     fetching();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [metaPage, searchPar, metaSort]);
