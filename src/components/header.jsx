@@ -124,7 +124,7 @@ function Header() {
                       className="lg:hidden absolute left-[61%] top-[50%] md:left-[34%] z-40"
                       onClick={handleShow}
                     >
-                      <i className="bi bi-caret-right-fill text-4xl text-secondary"></i>
+                      <i className="fixed bi bi-caret-right-fill text-4xl text-secondary"></i>
                     </div>
                   </div>
                 </>
