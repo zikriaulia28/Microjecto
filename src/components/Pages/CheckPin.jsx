@@ -69,7 +69,7 @@ function CheckPin({ dataAuth, isShow, onClose }) {
           <div className="flex justify-between">
             <input
               ref={input1Ref}
-              type="text"
+              type="password"
               className={`border w-12 h-14 rounded-lg outline-none text-center ${
                 input
                   ? "border-primary font-bold"
@@ -80,7 +80,7 @@ function CheckPin({ dataAuth, isShow, onClose }) {
             />
             <input
               ref={input2Ref}
-              type="text"
+              type="password"
               className={`border w-12 h-14 rounded-lg outline-none text-center ${
                 input
                   ? "border-primary font-bold"
@@ -91,7 +91,7 @@ function CheckPin({ dataAuth, isShow, onClose }) {
             />
             <input
               ref={input3Ref}
-              type="text"
+              type="password"
               className={`border w-12 h-14 rounded-lg outline-none text-center ${
                 input
                   ? "border-primary font-bold"
@@ -102,7 +102,7 @@ function CheckPin({ dataAuth, isShow, onClose }) {
             />
             <input
               ref={input4Ref}
-              type="text"
+              type="password"
               className={`border w-12 h-14 rounded-lg outline-none text-center ${
                 input
                   ? "border-primary font-bold"
@@ -114,7 +114,7 @@ function CheckPin({ dataAuth, isShow, onClose }) {
             />
             <input
               ref={input5Ref}
-              type="text"
+              type="password"
               className={`border w-12 h-14 rounded-lg outline-none text-center ${
                 input
                   ? "border-primary font-bold"
@@ -125,7 +125,7 @@ function CheckPin({ dataAuth, isShow, onClose }) {
             />
             <input
               ref={input6Ref}
-              type="text"
+              type="password"
               className={`border w-12 h-14 rounded-lg outline-none text-center ${
                 input
                   ? "border-primary font-bold"

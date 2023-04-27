@@ -21,7 +21,7 @@ function Header() {
   const [show, setShow] = useState(false);
   const [showNotif, setShowNotif] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
-  const [dataImage, setDataImage] = useState("");
+  const [dataImage, setDataImage] = useState(userStore.data.image);
 
   // const imgUrl =
   //   "https://res.cloudinary.com/dd1uwz8eu/image/upload/v1666604839/" +
@@ -80,7 +80,7 @@ function Header() {
                     <p className="font-bold text-lg">{name}</p>
                     <p className="text-font-primary-blur">{phone}</p>
                   </div>
-                  <div className="w-6 h-6" onClick={handleShowNotif}>
+                  <div className="w-6 h-6 relative" onClick={handleShowNotif}>
                     <Image src={notification} alt="notification" />
                   </div>
                   {showNotif && (

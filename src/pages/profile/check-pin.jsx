@@ -90,7 +90,7 @@ function ChangePin() {
               <div className="flex justify-between">
                 <input
                   ref={input1Ref}
-                  type="text"
+                  type="password"
                   className={`border w-12 h-14 rounded-lg outline-none text-center ${
                     input
                       ? "border-primary font-bold"
@@ -101,7 +101,7 @@ function ChangePin() {
                 />
                 <input
                   ref={input2Ref}
-                  type="text"
+                  type="password"
                   className={`border w-12 h-14 rounded-lg outline-none text-center ${
                     input
                       ? "border-primary font-bold"
@@ -112,7 +112,7 @@ function ChangePin() {
                 />
                 <input
                   ref={input3Ref}
-                  type="text"
+                  type="password"
                   className={`border w-12 h-14 rounded-lg outline-none text-center ${
                     input
                       ? "border-primary font-bold"
@@ -123,7 +123,7 @@ function ChangePin() {
                 />
                 <input
                   ref={input4Ref}
-                  type="text"
+                  type="password"
                   className={`border w-12 h-14 rounded-lg outline-none text-center ${
                     input
                       ? "border-primary font-bold"
@@ -135,7 +135,7 @@ function ChangePin() {
                 />
                 <input
                   ref={input5Ref}
-                  type="text"
+                  type="password"
                   className={`border w-12 h-14 rounded-lg outline-none text-center ${
                     input
                       ? "border-primary font-bold"
@@ -146,7 +146,7 @@ function ChangePin() {
                 />
                 <input
                   ref={input6Ref}
-                  type="text"
+                  type="password"
                   className={`border w-12 h-14 rounded-lg outline-none text-center ${
                     input
                       ? "border-primary font-bold"
