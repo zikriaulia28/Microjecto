@@ -38,6 +38,7 @@ function ChangePassword() {
       setInputOldPassword(false);
     }
     setOldPassword(e.target.value);
+    setInvalid(false);
   };
 
   const handleNewPassword = (e) => {
@@ -47,6 +48,7 @@ function ChangePassword() {
       setInputNewPassword(false);
     }
     setNewPassword(e.target.value);
+    setInvalid(false);
   };
 
   const handleConfirmPassword = (e) => {
@@ -56,6 +58,7 @@ function ChangePassword() {
       setInputConfirmPassword(false);
     }
     setConfirmPassword(e.target.value);
+    setInvalid(false);
   };
 
   const toggleOldPassword = () => {
@@ -237,6 +240,12 @@ function ChangePassword() {
                   ) : (
                     <button
                       onClick={handlerChangePassword}
+                      disabled={
+                        oldPassword === "" ||
+                        newPassword === "" ||
+                        confirmPassword === "" ||
+                        isInvalid
+                      }
                       className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none ${
                         inputOldPassword && inputNewPassword && confirmPassword
                           ? "bg-primary text-white"

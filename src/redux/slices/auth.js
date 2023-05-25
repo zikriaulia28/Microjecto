@@ -103,43 +103,24 @@ const userSlice = createSlice({
       };
     },
   },
-  extraReducers: {
-    [loginThunk.pending]: (prevState) => {
-      return {
-        ...prevState,
-        isLoading: true,
-        isRejected: false,
-        isFulfilled: false,
-      };
-    },
-    [loginThunk.fulfilled]: (prevState, action) => {
-      if (action.payload.response && action.payload.response.status === 400) {
-        return {
-          ...prevState,
-          isLoading: false,
-          isFulfilled: true,
-          err: action.payload.response.data,
-        };
-      }
-      return {
-        ...prevState,
-        isLoading: false,
-        isFulfilled: true,
-        token: action.payload.data.token,
-        data: {
-          ...prevState.data,
-          id: action.payload.data.id,
-        },
-      };
-    },
-    [loginThunk.rejected]: (prevState, action) => {
-      return {
-        ...prevState,
-        isLoading: false,
-        isRejected: true,
-        err: action.payload,
-      };
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isRejected = false;
+        state.isFulfilled = false;
+      })
+      .addCase(loginThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isFulfilled = true;
+        state.token = action.payload.token || null;
+        state.data = action.payload.dataUser || null;
+      })
+      .addCase(loginThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isRejected = true;
+        state.err = action.payload;
+      });
   },
 });
 
