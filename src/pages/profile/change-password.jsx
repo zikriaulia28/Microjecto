@@ -5,6 +5,7 @@ import Aside from "@/components/SideBar";
 import Image from "next/image";
 import show from "../../assets/auth/show.svg";
 import hide from "../../assets/auth/hide.svg";
+import Link from "next/link";
 import { useState, useMemo } from "react";
 import { editPassword } from "@/utils/https/user";
 import { useSelector } from "react-redux";
@@ -231,12 +232,12 @@ function ChangePassword() {
               ) : (
                 <>
                   {isSuccess ? (
-                    <button
-                      onClick={() => router.push(`/profile/${userId}`)}
-                      className={`mt-5 text-center py-4 rounded-lg cursor-pointer w-full border-none input bg-primary text-white`}
+                    <Link
+                      href={`/profile/${userId}`}
+                      className={`btn mt-5 text-center py-4 rounded-lg cursor-pointer w-full hover:bg-primary border-none input bg-primary text-white`}
                     >
-                      Back
-                    </button>
+                      Go Back
+                    </Link>
                   ) : (
                     <button
                       onClick={handlerChangePassword}
