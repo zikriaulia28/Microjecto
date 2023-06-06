@@ -90,12 +90,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-## Deployment
-
-[Vercel deploy link](https://fazz-pay.vercel.app/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Contributing
 
 1. Fork the Project
