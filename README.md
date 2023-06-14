@@ -9,6 +9,8 @@
 
   <h2 align="center">FAZZPAY E-WALLET</h2>
 
+  <h2>Translate The e-wallet website is a digital platform for electronic financial transactions. Users can store, send, and receive money electronically. They can fill in the e-wallet balance and use different payment methods. Financial and security management features are also provided. The main objective of this project is to provide a comfortable and efficient transaction experience.</h2>
+
   <p align="center">
     <a href="https://microjecto-fazzpay.vercel.app/">View Demo</a>
     ·
