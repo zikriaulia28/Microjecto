@@ -10,7 +10,7 @@
 
   <h3 align="center">FAZZPAY E-WALLET</h3>
 
-[Demo](https://microjecto-fazzpay.vercel.app/) · [Related Projects](#related-projects) · [Request Feature](#report-bug)
+[Demo](https://microjecto-fazzpay.vercel.app/) · [Request Feature](#report-bug)
 
 </div>
 
