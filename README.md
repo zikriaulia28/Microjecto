@@ -1,57 +1,56 @@
-<a id="readme-top"></a>
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
   <a href="#">
     <img src="./public/favicon.ico" alt="Logo" width="80" height="80">
   </a>
 
-  <h2 align="center">FAZZPAY E-WALLET</h2>
+  <br/>
+  <br/>
 
-  <p>The e-wallet website is a digital platform for electronic financial transactions. Users can store, send, and receive money electronically. They can fill in the e-wallet balance and use different payment methods. Financial and security management features are also provided. The main objective of this project is to provide a comfortable and efficient transaction experience.</p>
+[![Tech Stack](https://skillicons.dev/icons?i=redux,tailwind,vercel,next)](#tech-stack)
 
-  <p align="center">
-    <a href="https://microjecto-fazzpay.vercel.app/">View Demo</a>
-    ·
-    <a href="mailto:zikriaulia98@gmail.com">Report Bug</a>
-    ·
-    <a href="mailto:zikriaulia98@gmail.com">Request Feature</a>
-  </p>
+  <h3 align="center">FAZZPAY E-WALLET</h3>
+
+[Demo](https://microjecto-fazzpay.vercel.app/) · [Related Projects](#related-projects) · [Request Feature](#report-bug)
+
 </div>
 
-## Built With
+## Table of Contents
 
-<p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=react,javascript,html,css,redux,tailwind,vercel,next" />
-  </a>
-</p>
+- [About Project](#about-Project)
+  - [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+  - [Clone this repository](#Clone-this-repository)
+  - [Install dependency packages](#Install-dependency-packages)
+- [Documentation](#documentation)
+- [License](#license)
+- [Report Bug](#report-bug)
+- [Contributor](#contributor)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## About Project
 
-## Contents
+"The e-wallet website is a digital platform for electronic financial transactions. Users can store, send, and receive money electronically. They can fill in the e-wallet balance and use different payment methods. Financial and security management features are also provided. The main objective of this project is to provide a comfortable and efficient transaction experience"
 
-- [Features](#features)
-- [Run Application](#how-to-run-the-application)
-- [Deployment](#deployment)
-- [Related Projects](#related-projects)
-- [Contributors](#contributors)
+### Features
 
-## Features
-
-### Public
-
-- Login
-- Register
-- Forgot Password
-- Transfer
-- Transfer History
-- Edit Profile
+- Login, Register, Forgot Password, Logout
+- Profile
+- Transfer (Search, Sort, Filter)
+- History Transfer
+- TopUp
 - Dashboard
-- Etc
+- etc.
 
-## How to Run the Application
+## Tech Stack
+
+- [NextJS](https://nextjs.org/)
+- [Redux](https://redux.js.org/) & [Redux Persist](https://www.npmjs.com/package/redux-persist) (Local Storage)
+- [TailwindCSS](https://tailwindcss.com/) & [DaisyUI](https://daisyui.com/)
+
+- [Vercel](https://vercel.com/) for deploying demo
+- etc.
+
+## Getting Started
 
 ### 1. Clone this repository
 
@@ -92,22 +91,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-## Contributing
-
-1. Fork the Project
-2. Create your new Branch ( `git checkout -b ...` )
-3. Commit your Changes ( `git commit -m '...'` )
-4. Push to the Branch ( `git push origin ...` )
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Deployment
-
-[Vercel deploy Link](https://microjecto-fazzpay.vercel.app/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Documentation
 
 <div style="display: flex; flex-wrap: wrap; gap: 1%;">
@@ -122,3 +105,27 @@ You may also see any lint errors in the console.
 <img width="49%" src="./src/assets/readme/readme6.png" alt="Landing page">
 <img width="49%" src="./src/assets/readme/readme7.png" alt="Landing page">
 </div>
+
+## License
+
+This project is licensed under the ISC License. See the [LICENSE](LICENSE) file for details.
+
+## Report Bug
+
+Any error report you can pull request
+or contact: <zikriaulia98@gmail.com>
+
+## Contributor
+
+  <table>
+    <tr>
+      <td >
+        <a href="https://github.com/zikriaulia28">
+          <img width="100" src="https://avatars.githubusercontent.com/u/103765843?v=4" alt=""><br/> 
+          <div align="center">
+          <sub><b>Zikri Aulia</b></sub>
+          </div>
+        </a>
+        </td>
+    </tr>
+  </table>
